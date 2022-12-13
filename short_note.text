@@ -1,0 +1,41 @@
+
+// Run on cmd for Make secret key 
+ 
+
+
+128 >> 
+node -e "console.log(require('crypto').randomBytes(128).toString('base64'));"  
+
+iFvF7OF/lantcg6J8K5f01118qjx/tgC+FGUzHBHRY4k4bw9WqzYr1tczBcaPeE+5tiQodcx4bcxpQtSUIcxxBZef2X2yA0g11jvKZOoHi3lt6SL6+WoNLZfckX2dHxdj9mA6YDA4BrS2gYQWa9umaMferRA2UE0sXosirlaN9w=
+
+
+
+256 >>
+node -e "console.log(require('crypto').randomBytes(256).toString('base64'));" 
+
+uLjqDcyZDOqBAhwivEc3a+h55Hhg/c6xoDp0xJ8pXig8cMSAi829t1q2A+5P5GgSNKbbRomB1V3+9fP/WIOJZyoNIm6TLzbCWNBWyg6iWUUE8o08xJ9TfePZwppuwQMSypRpJ/BoiQtKF61YxPm5s5BbtmOkk1KPO+ydwCwCOIHhhiN+rEsfZTFBudEoKH8g6Qu+LmbmdxbzGThgVAEC9trynSU7Onk8BJiK9GVboJKrguv2hK8aU2kTn1KhSI82P/ZOQO85zlLpVax7Xx18Odq8CxOXl28wzl0uGOZacecKDnd5GPUGwazSbxUs+A1IeyF+GmyCwTnvGS5bXvy3ew== 
+
+
+
+
+
+Stage 01 :
+    Done >>
+        Register with email & mobile
+        Account activation with OTP & link
+        Resend the link & OTP code
+        Forgot password with link expire session
+        Change password
+
+
+    running >>
+        User login system
+        Private routing with Page access redirection
+
+    waiting >>
+        Profile details updated
+        Change email with security transfer
+        Profile photo change
+        Cover photo change
+        Search Friends
+        Check friends profile 

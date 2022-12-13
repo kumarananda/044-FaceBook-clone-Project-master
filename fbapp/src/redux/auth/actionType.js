@@ -1,0 +1,12 @@
+export const REGISTER_REQUEST =  'REGISTER_REQUEST';
+export const REGISTER_SUCCESS =  'REGISTER_SUCCESS';
+export const REGISTER_FAILED =  'REGISTER_FAILED';
+
+export const ACTIVATION_SUCCESS =  'ACTIVATION_SUCCESS';
+export const ACTIVATION_FAILED =  'ACTIVATION_FAILED';
+export const ACTIVATED =  'ACTIVATED';
+
+// Forgot pass or forgot
+export const FIND_SUCCESS =  'FIND_SUCCESS';
+export const FIND_FAILED =  'FIND_FAILED';
+export const FIND_EMPTY =  'FIND_EMPTY';
