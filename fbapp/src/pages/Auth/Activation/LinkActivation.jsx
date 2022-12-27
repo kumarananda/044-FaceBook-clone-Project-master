@@ -3,8 +3,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import HeaderLogin from "../../../components/HeaderLogin";
-import AuthFooter from "../../../components/AuthFooter";
+import HeaderLogin from "../../../components/AuthComponents/HeaderLogin";
+import AuthFooter from "../../../components/AuthComponents/AuthFooter";
 import { useEffect } from "react";
 import { linkActivation } from "../../../redux/auth/authAction";
 

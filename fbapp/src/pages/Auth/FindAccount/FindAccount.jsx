@@ -1,11 +1,11 @@
 /** @format */
 
 import React from "react";
-import AuthFooter from "../../../components/AuthFooter";
-import HeaderLogin from "../../../components/HeaderLogin";
+import AuthFooter from "../../../components/AuthComponents/AuthFooter";
+import HeaderLogin from "../../../components/AuthComponents/HeaderLogin";
 import uaerAvater from "../../../_assets/images/useravatar.png";
 import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { checkNumber, validateEmail } from "../../../utility/validate.js";
@@ -22,7 +22,7 @@ const FindAccount = () => {
 
   //if not get cookies data
   useEffect(() => {
-    if (getFindUser == undefined || !getFindUser) {
+    if (getFindUser === undefined || !getFindUser) {
       navigate("/login");
     }
   });

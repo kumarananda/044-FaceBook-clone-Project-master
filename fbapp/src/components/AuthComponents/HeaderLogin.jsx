@@ -1,6 +1,6 @@
 /** @format */
 
-import fbLogo from "../_assets/icons/facebook.svg";
+import fbLogo from "../../_assets/icons/facebook.svg";
 import React from "react";
 
 const HeaderLogin = () => {

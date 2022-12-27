@@ -1,7 +1,8 @@
 
 // mail validation 
 const validateEmail = (mail) => {
-    const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/).test(mail);
+    // const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*[a-z](.\w{2,3})+$/).test(mail);
+    const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*[a-z][.](\w{2,})$/).test(mail);
     return mailPattrn 
 }
 
@@ -49,3 +50,13 @@ const passwordValid = (data) => {
 module.exports = { validatePhoneBD, validateEmail, checkString, checkNumber, checkCode, passwordValid }
 
 
+
+
+// mail validation 
+// const validateEmailtest = (mail) => {
+//     // const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*[a-z](.\w{2,3})+$/).test(mail);
+//     const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*[a-z][.](\w{2,3}+)$/).test(mail);
+//     return mailPattrn 
+// }
+// let mailString ='anandasaha@'
+// console.log(validateEmailtest(mailString));

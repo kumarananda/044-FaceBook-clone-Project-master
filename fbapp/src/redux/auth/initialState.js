@@ -4,7 +4,7 @@
 // initial state
 const authInitial =  {
     user : {},
-    loginStatus : false,
+    loginStatus : true,
     loading : false,
     message : "",
     actResult: {},

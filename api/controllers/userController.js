@@ -159,17 +159,17 @@ const registerUser = async (req, res, next) => {
  * @method POST
  */
 const login = async (req, res, next) => {
-
+        
     try {
         const { loginId , password } = req.body;
 
 
         if(!loginId ){
-            next(createError(400, 'Email of Phone is required!'))
+            return next(createError(400, 'Email of Phone is required!'))
         }
 
         if(!password){
-            next(createError(400, 'Password is required!'))
+            return next(createError(400, 'Password is required!'))
         }
 
         const emailTest = validateEmail(loginId);
@@ -182,20 +182,105 @@ const login = async (req, res, next) => {
                 user = await User.findOne({phone: loginId})
             }
         }else{
-            return next(createError(400, 'Phone or Email is not valid!'));
+            // return next(createError(400, 'Phone or Email is not valid!'));
+            return res.status(400).json({
+                message : 'Phone or Email is not valid!',
+                phonemail : true,
+            })
         }
 
+        if(!user){
+            console.log(user);
+            return res.status(400).json({
+                message : 'User not found',
+                phonemail : true,
+            })
+        }
         if(user){
             if(!verifyPassword(password, user.password)){             
-                return next(createError(400, 'Password not match'));
+                return res.status(400).json({
+                    message : 'Password not match',
+                    password : true,
+                })
             }
-        }else{
-            return next(createError(400, 'User not found'));
         }
 
-        const token = createJwtToken({id: user._id}, '365d');
-              
-        res.status(200).cookie('authToken', token).json(user)
+        // if user account is not active
+        if(!user.isActivate){
+
+            // create random code for activation
+            let activationCode = makeRandom(6);
+
+            await User.findByIdAndUpdate(user._id, {access_code: activationCode})
+
+            // create token 
+            const act_mailToken = createJwtToken({id: user._id}, '30m')
+            const act_TP = createJwtToken({id: user._id}, '15m')
+
+            let uName =  user.first_name + " " + user.surname;
+            if(user.email && emailTest){
+                sendActivationLink(
+                    user.email,
+                    'Facebook Pro account activation',
+                    "Please Check and confirm your account",
+                    emailHtml(
+                        uName,  
+                        link = `${process.env.APP_URL+":"+process.env.CLIENT_PORT}/act-link/${user._id}/${act_mailToken}`, 
+                        activationCode
+                    )
+                )
+            }
+
+            // if use key phoneORemail for sending body data
+            if(user.phone && phoneTest){
+                // bulksmsbd balance will expire on 28-may, 2023
+                sendSms_BD(
+                    user.phone,
+                    `Hi ${uName} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
+                )
+            }
+
+            const activationUser = emailTest ? user.email: user.phone;
+
+            const cockiesend = JSON.stringify({
+                activeName : uName,
+                activeUser: activationUser,
+                JwToken: act_TP
+            })
+    
+            // cookie with cookie-parser on express server 
+            //Expires after 15 min from the time it is set.
+            let ExpireInMin = 30;
+    
+            if(user){
+                res.status(200)
+                .cookie('act_OTP', cockiesend, { expires: new Date(Date.now() + 1000*60* ExpireInMin)})
+                .json(
+                    {
+                        message: "Please active your account",
+                        activeName : uName, 
+                        activeUser: activationUser,
+                        isActivate : user.isActivate
+
+                    }
+                )
+            }
+            return;
+        }
+
+        const expireD = 30;
+        if(user.isActivate){
+            const token = createJwtToken({id: user._id, login:true}, '30d'); 
+            // console.log(token);
+            res.status(200).cookie('authToken', token,  { expires: new Date(Date.now() + 1000*60*60*24* expireD)}).json({
+                user,
+                message : 'Login succesful',
+                isActivate : user.isActivate
+            });
+            return;
+        }
+
+
 
     } catch (error) {
         next(error)
@@ -460,9 +545,10 @@ const logedInUser_me =async (req, res, next) => {
         }
         if(authUser){
             const token = authUser.split(' ')[1]
-            const {id} = tokenVerify(token)
+            const {id, login} = tokenVerify(token)
+            // console.log(login);
             
-            if(!id){
+            if(!id || !login){
                 return next(createError(400, "Data not found or Expire"))
             }
             if(id){
@@ -474,11 +560,20 @@ const logedInUser_me =async (req, res, next) => {
                     return next(createError(400, "User not found or data not match!"))
                 }
                 if(lodedInUser){
+                    if(lodedInUser.isActivate){
+                        return res.status(200).json({ 
+                            message : "User Data stable", 
+                            user: lodedInUser
+                        })
+                    }
+                    if(!lodedInUser.isActivate){
+                        return res.status(200).json({ 
+                            message : "User account activation required!", 
+                            user: {isActivate: lodedInUser.isActivate}
+                        })
+                    }
                     
-                    res.status(200).json({ 
-                        message : "User Data stable", 
-                        user: lodedInUser
-                    })
+
                 }
                 
             }
@@ -829,10 +924,10 @@ const resetPassword = async (req, res, next) => {
 
             const user = await User.findByIdAndUpdate(id, { password : hashPass, access_code : "", access_token : ""})
 
-            const sendToken = createJwtToken({id}, '30m');
+            const sendToken = createJwtToken({id, login: true}, '30d');
 
-                    
-            res.status(200).cookie('authToken', sendToken).json({
+            const expireD = 30; 
+            res.status(200).cookie('authToken', sendToken,  { expires: new Date(Date.now() + 1000*60*60*24* expireD)}).json({
                 message : 'Password update successful',
                 user : user
             })

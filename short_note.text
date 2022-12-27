@@ -26,11 +26,14 @@ Stage 01 :
         Resend the link & OTP code
         Forgot password with link expire session
         Change password
+        User login system
 
+        Private routing with Page access redirection
+        some fix willbe require
 
     running >>
-        User login system
-        Private routing with Page access redirection
+        
+        
 
     waiting >>
         Profile details updated

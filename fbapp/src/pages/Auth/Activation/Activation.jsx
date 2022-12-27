@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import AuthFooter from "../../../components/AuthFooter";
-import HeaderLogin from "../../../components/HeaderLogin";
+import AuthFooter from "../../../components/AuthComponents/AuthFooter";
+import HeaderLogin from "../../../components/AuthComponents/HeaderLogin";
 import { codeActivation, codeResend } from "../../../redux/auth/authAction";
 import createTost from "../../../utility/tost";
 import { checkCode6 } from "../../../utility/validate";
@@ -100,7 +100,7 @@ const Activation = () => {
               <h5> Hi {name}</h5>
               <p>Please check your emails for a message with your code. Your code is 6 numbers long.</p>
               <div className="code-box">
-                <input value={actCode} className={errBorder && `error-border`} onChange={handleInput} onBlur={errBorderCon} type="text" />
+                <input value={actCode} className={errBorder ? `error-border` : ""} onChange={handleInput} onBlur={errBorderCon} type="text" />
                 <div className="code-text">
                   <span>We sent your code to </span>
                   <span>{user}</span>

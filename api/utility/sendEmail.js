@@ -26,7 +26,6 @@ const sendActivationLink = async (to, subject, text, html) => {
             html    : html
         })
 
-
     }catch(error){
         console.log(error);
     }

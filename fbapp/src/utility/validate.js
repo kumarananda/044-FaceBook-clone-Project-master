@@ -1,9 +1,9 @@
 // mail validation 
 export const validateEmail = (mail) => {
-    const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/).test(mail)
+    const mailPattrn = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*[a-z][.](\w{2,})$/).test(mail)
     return mailPattrn 
 }
-
+// (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*[a-z][.](\w{2,3}+)$/)
 // Phone validation 
 export const validatePhoneBD = (phone) => {
     let phonetest = (/^(01|\+8801|8801)[0-9]{9}$/).test(phone)

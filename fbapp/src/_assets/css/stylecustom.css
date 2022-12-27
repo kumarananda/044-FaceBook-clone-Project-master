@@ -254,16 +254,18 @@
   bottom: 30px;
 }
 
-.input-wraper .errorMess {
+.input-wraper,
+.input-wraper-pass .errorMess {
   color: #f02849;
   font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 16px;
   text-align: left;
   margin-bottom: 8px;
-  margin-top: -14px;
+  /* margin-top: -14px; */
 }
-.input-wraper .errorMess a {
+.input-wraper,
+.input-wraper-pass .errorMess a {
   color: #f02849;
   font-weight: bold;
 }
@@ -274,4 +276,81 @@
 /*  */
 .auth-box.auth-form {
   margin-bottom: 10px;
+}
+
+/* pass hide con */
+.input-wraper-pass {
+  border-color: #e4e6eb;
+  margin-bottom: 13px;
+}
+.input-wraper-pass .input-box {
+  display: flex;
+  height: 50px;
+  border-color: #e4e6eb;
+
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 6px;
+  font-weight: 200;
+  font-family: inherit;
+}
+
+.input-wraper-pass .input-box input {
+  width: 100%;
+  font-size: 17px;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 6px;
+}
+
+.input-wraper-pass .input-box .pass-show a img {
+  width: 20px;
+  height: 20px;
+}
+
+.input-wraper-pass .input-box span.pass-show {
+  padding: 14px 6px;
+}
+.input-wraper-pass .input-box.borderRed {
+  border: 1px solid red !important;
+}
+
+/* home page  */
+.user-post-header .post-info .user-details svg {
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.fb-home-header {
+  z-index: 999999;
+}
+
+/* for new register page  */
+.sign-up-card-reg-page {
+  width: 432px;
+  background-color: #fff;
+  margin: auto;
+  margin-top: 120px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+/* for item hiden control */
+.active {
+  opacity: 1;
+  visibility: visible;
+  /* transform: translateY(0);
+  transition: 200ms ease; */
+}
+.inactive {
+  opacity: 0;
+  visibility: hidden;
+  /* transform: translateY(-20px);
+  transition: 200ms ease; */
+}
+
+.nutural-circle-btn {
+  border: none;
+  border-radius: 50%;
+  background: transparent;
 }

@@ -1,20 +1,14 @@
 import axios from "axios"
 import createTost from "../../utility/tost.js";
 import Cookies from "js-cookie";
-import { ACTIVATED, ACTIVATION_FAILED, ACTIVATION_SUCCESS, FIND_EMPTY, FIND_FAILED, FIND_SUCCESS, REGISTER_FAILED, REGISTER_REQUEST, REGISTER_SUCCESS } from "./actionType";
+import { ACTIVATED, ACTIVATION_FAILED, ACTIVATION_SUCCESS, FIND_EMPTY, FIND_FAILED, FIND_SUCCESS, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_FAILED, REGISTER_REQUEST, REGISTER_SUCCESS, USER_LOGOUT } from "./actionType";
 import { setMonthShortName } from "../../utility/satvalus.js";
 import { checkCode6, checkNumber } from "../../utility/validate.js";
 // import { passwordValid } from "../../utility/validate.js";
 
 
-
-
-
-
-
-
 // USER REGISTER 
-export const userRegister = (data, setRegister , navigate, e, setInput) => async (dispatch) => {
+export const userRegister = (data, setRegister , navigate, e, setInput, setFildEdit) => async (dispatch) => {
     const date = new Date()
     try {
         dispatch({
@@ -55,13 +49,9 @@ export const userRegister = (data, setRegister , navigate, e, setInput) => async
             // { 
             //     expires: 1 
             // })
-
+            setFildEdit({})
   
             navigate('/activation') 
-
-            
-            
-            
         })
         .catch(error => {
             createTost(error.response.data.message, )
@@ -109,9 +99,12 @@ export const codeActivation = (code, token, setErrBorder, navigate) => async (di
          
             Cookies.remove('act_OTP') 
 
-            setTimeout(()=> {
-                navigate('/login') 
-            },2000)
+            // setTimeout(()=> {
+            //     // navigate('/login') 
+            //     navigate('/') 
+            // },2000)
+            
+            navigate('/')
             
             
             
@@ -185,9 +178,13 @@ export const linkActivation = ({token, userId },navigate) => async (dispatch) =>
                 type : ACTIVATED,
                 payload: res.data.message
             })
-            setTimeout(() => {
-                navigate('/login') 
-            }, 5000);
+            // setTimeout(() => {
+            //     // navigate('/login') 
+            //     navigate('/')
+            // }, 5000);
+
+            navigate('/') 
+
 
             // createTost(res.data.message, "info");
         } else if(res.data.action === 'success') {
@@ -203,17 +200,21 @@ export const linkActivation = ({token, userId },navigate) => async (dispatch) =>
                 type : ACTIVATION_FAILED,
                 payload: res.data.message
             })
-            setTimeout(() => {
-                navigate('/login') 
-            }, 5000);
+        // setTimeout(() => {
+        //     navigate('/login') 
+        //     navigate('/') 
+        // }, 5000);
+        navigate('/') 
         }
 
         
     })
     .catch(error => {
-        setTimeout(() => {
-            navigate('/login') 
-        }, 5000);
+        // setTimeout(() => {
+        //     navigate('/login') 
+        //     navigate('/') 
+        // }, 5000);
+        navigate('/') 
         dispatch({
             type : ACTIVATION_FAILED,
             payload: error.response.data.message
@@ -338,12 +339,7 @@ export const handleSetNewPass = (pass, reset_vfy, setErrorMsg, setErrBorder, nav
             // createTost("Code will be six digit & [0-9]");
             return;
         }
-        // if (!passwordValid(pass)) {
-        //     setErrorMsg({status:true, msg: 'Password must be at least one special character (!@#$%^&*), one number, one (a-z or A-Z) and (?=.*) are not allword'});
-        //     setErrBorder(true);
-        //     // createTost("Code will be six digit & [0-9]");
-        //     return;
-        // }
+
 
         const bearer  = `Bearer `+reset_vfy ;
         await axios.post('/api/v1/user/reset-password', {password : pass}, {
@@ -360,8 +356,8 @@ export const handleSetNewPass = (pass, reset_vfy, setErrorMsg, setErrBorder, nav
             Cookies.remove("find_OTP")
             Cookies.remove("resetToken")
 
-            // navigate('/') 
-            navigate('/login')
+            // navigate('/login')
+            navigate('/')
 
         })
         .catch(error => {
@@ -422,23 +418,133 @@ export const resetPassLinkVfy = (id, token, setMsg, navigate) => async(dispatch)
 }
 
 // user login req.
-export const handleLogin = (logIn, setErrBorder, setErrmsg) => (dispatch) => {
-    const {emailOrPhone, password} = logIn;
+export const handleLogin = (logIn, setErrBorder,  navigate, setErrmsg) => async (dispatch) => {
 
-    if(!emailOrPhone || !password){
-        if(!emailOrPhone){setErrmsg(prev => ({...prev, emailOrPhone: true }))}
-        // else if(emailOrPhone){setErrmsg(prev => ({...prev, emailOrPhone: false }))}
-        if(!password){setErrmsg(prev => ({...prev, password: true }))}
-        // else if(password){setErrmsg(prev => ({...prev, emailOrPhone: false }))}
-        return;
-    }else{
-        setErrmsg({})
+    try {
+        dispatch({
+            type: 'LOADER_START'
+        })
+        const {emailOrPhone, password} = logIn;
+
+        if(!emailOrPhone || !password){
+            // if(!emailOrPhone){setErrmsg(prev => ({...prev, emailOrPhone: true }))}
+            // if(!password){setErrmsg(prev => ({...prev, password: true }))}
+            if(!emailOrPhone){  setErrBorder(prev => ({...prev, emailOrPhone: true }))}else{
+                setErrBorder(prev => ({...prev, emailOrPhone: false }))
+            }
+            if(!password){  setErrBorder(prev => ({...prev, password: true }))}else{
+                setErrBorder(prev => ({...prev, password: false }))
+            }
+
+            return;
+        }else{ setErrmsg({}) }
+    
+        
+        await axios.post('/api/v1/user/login', { loginId :emailOrPhone , password })
+        .then(res => {
+
+            setErrmsg({})
+            setErrBorder({});
+            
+            if(!res.data.isActivate){
+                
+                createTost(res.data.message, 'info');
+                navigate('/activation') 
+
+            }else{
+                dispatch({
+                    type: 'LOGIN_USER_SUCCESS',
+                    payload : res.data.user
+                })
+                createTost(res.data.message, 'success');
+                navigate('/')
+            }
+
+        })
+        .catch(error => {
+            let errData = error.response.data;
+            if(errData.phonemail && errData.password){
+                setErrBorder(prev => ({ emailOrPhone: true, password: true })) 
+            }else {
+                if(errData.password){
+                    setErrBorder({ password: true }) 
+                }else if(errData.phonemail){
+                    setErrBorder({ emailOrPhone: true }) 
+                }
+            }
+        
+            createTost(error.response.data.message);
+            console.log(error.response.data);
+        })
+    } catch (error) {
+        let errData = error.response.data;
+        if(errData.phonemail && errData.password){
+            setErrBorder(prev => ({ emailOrPhone: true, password: true })) 
+        }else if(errData.password){
+            setErrBorder({ password: true }) 
+        }else if(errData.password){
+            setErrBorder({ emailOrPhone: true }) 
+        }
+    
+        createTost(error.response.data.message);
+        console.log(error.response.data.message);
+    }
+
+
+}
+
+// get logedin user 
+export const logedInUserData = (authToken, navigate) => async (dispatch) => {
+
+    try{ 
+
+        dispatch({
+            type: LOGIN_USER_REQUEST
+        })
+
+        // get token user
+        await axios.get('/api/v1/user/me', {
+        headers : {
+            "Authorization" : `Bearer ${authToken}`
+        }
+        })
+        .then(res => {
+        
+        if(res.data.user.isActivate){
+          dispatch({type : LOGIN_USER_SUCCESS, payload : res.data.user});
+        //   navigate('/')
+        }else {
+            
+            dispatch({type : USER_LOGOUT})
+            createTost(res.data.message)
+            // console.log(res.data.user.isActivate);
+            Cookies.remove('authToken')
+
+        }
+        
+        })
+        .catch(error => {
+            console.log('get error');
+
+            dispatch({type : USER_LOGOUT})
+            createTost(error.response.data.message)
+            if(Cookies.get('authToken')){
+                Cookies.remove('authToken')
+            }
+            console.log(error.response.data.message);
+            console.log('error called');
+        }) 
+
+    }catch(error){
+        console.log('get error');
+        
+        dispatch({type : USER_LOGOUT})
+        createTost(error.response.data.message)
+        if(Cookies.get('authToken')){
+            Cookies.remove('authToken')
+        }
+        console.log(error.response.data.message);
     }
     
-    
-
-    alert('done')
-
-
 }
 

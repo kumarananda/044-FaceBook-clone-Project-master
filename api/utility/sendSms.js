@@ -7,8 +7,14 @@ const sendSms_BD = async (number_to, message ) => {
     const approvedSenderID = process.env.BULK_SMS_SENDER_ID ;
 
     try{
-
+        console.log(number_to);
         await axios.post(`https://bulksmsbd.net/api/smsapi?api_key=${apikey}&type=text&number=${number_to}&senderid=${approvedSenderID}&message=${message}`)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }catch(error){
         console.log(error);
     }
@@ -19,37 +25,10 @@ module.exports = {
 
 
 
-
-
-
-
 // import Vonage from '@vonage/server-sdk';
 // import axios from 'axios';
 
 // // dependencies >>    "@vonage/server-sdk": "^2.11.2",
-
-
-// // for bulksmsbd.net SMS service
-// export const sendSms_B = async (number_to, message ) => {
-//     const apikey = process.env.BULK_SMS_API_KEY;
-//     const approvedSenderID = "8809612443880";
-
-//     try{
-//         // console.log('sms test');
-//         // console.log('sms test');
-
-//         await axios.post(`https://bulksmsbd.net/api/smsapi?api_key=${apikey}&type=text&number=${number_to}&senderid=${approvedSenderID}&message=${message}`)
-//         // console.log('sms test');
-//     }catch(error){
-//         console.log(error);
-//     }
-// }
-
-
-
-
-
-
 
 
 // // for Vonage SMS service

@@ -3,9 +3,9 @@
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import AuthFooter from "../../../components/AuthFooter";
-import HeaderLogin from "../../../components/HeaderLogin";
+import { useNavigate } from "react-router-dom";
+import AuthFooter from "../../../components/AuthComponents/AuthFooter";
+import HeaderLogin from "../../../components/AuthComponents/HeaderLogin";
 import exclamationPng from "../../../_assets/images/exclamation.png";
 import { handleSetNewPass } from "../../../redux/auth/authAction";
 
@@ -16,7 +16,7 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
 
   // get cookie data
-  let find_OTP = Cookies.get("find_OTP");
+  // let find_OTP = Cookies.get("find_OTP");
   let reset_vfy = Cookies.get("reset_vfy");
 
   useEffect(() => {
