@@ -94,22 +94,17 @@ const registerUser = async (req, res, next) => {
         const act_mailToken = createJwtToken({id: user._id}, '30m')
         const act_TP = createJwtToken({id: user._id}, '15m')
 
-        let uName =  user.first_name + " " + user.surname;
+        let u_full_name =  user.first_name + " " + user.surname;
         if(user.email){
             sendActivationLink(
                 user.email,
                 'Facebook Pro account activation',
                 "Please Check and confirm your account",
                 emailHtml(
-                    uName,  
+                    u_full_name,  
                     link = `${process.env.APP_URL+":"+process.env.CLIENT_PORT}/act-link/${user._id}/${act_mailToken}`, 
                     activationCode
                 )
-                // emailHtml(
-                //     uName,  
-                //     link = `${process.env.APP_URL+":"+process.env.PORT}/api/v1/user/activation/${act_mailToken}`, 
-                //     activationCode
-                // )
             )
         }
 
@@ -118,14 +113,14 @@ const registerUser = async (req, res, next) => {
             // bulksmsbd balance will expire on 28-may, 2023
             sendSms_BD(
                 user.phone,
-                `Hi ${uName} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
+                `Hi ${u_full_name} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
             )
         }
 
         const activationUser = user.email ? user.email: user.phone;
 
         const cockiesend = JSON.stringify({
-            activeName : uName,
+            activeName : u_full_name,
             activeUser: activationUser,
             JwToken: act_TP
         })
@@ -140,7 +135,7 @@ const registerUser = async (req, res, next) => {
             .json(
                 {
                     message: "User created successful",
-                    activeName : uName, 
+                    activeName : u_full_name, 
                     activeUser: activationUser
 
                 }
@@ -217,14 +212,14 @@ const login = async (req, res, next) => {
             const act_mailToken = createJwtToken({id: user._id}, '30m')
             const act_TP = createJwtToken({id: user._id}, '15m')
 
-            let uName =  user.first_name + " " + user.surname;
+            let u_full_name =  user.first_name + " " + user.surname;
             if(user.email && emailTest){
                 sendActivationLink(
                     user.email,
                     'Facebook Pro account activation',
                     "Please Check and confirm your account",
                     emailHtml(
-                        uName,  
+                        u_full_name,  
                         link = `${process.env.APP_URL+":"+process.env.CLIENT_PORT}/act-link/${user._id}/${act_mailToken}`, 
                         activationCode
                     )
@@ -236,14 +231,14 @@ const login = async (req, res, next) => {
                 // bulksmsbd balance will expire on 28-may, 2023
                 sendSms_BD(
                     user.phone,
-                    `Hi ${uName} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
+                    `Hi ${u_full_name} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
                 )
             }
 
             const activationUser = emailTest ? user.email: user.phone;
 
             const cockiesend = JSON.stringify({
-                activeName : uName,
+                activeName : u_full_name,
                 activeUser: activationUser,
                 JwToken: act_TP
             })
@@ -258,7 +253,7 @@ const login = async (req, res, next) => {
                 .json(
                     {
                         message: "Please active your account",
-                        activeName : uName, 
+                        activeName : u_full_name, 
                         activeUser: activationUser,
                         isActivate : user.isActivate
 
@@ -464,13 +459,13 @@ const resendAcc_Code = async (req, res, next) => {
         const act_TP = createJwtToken({id: findUser._id}, '15m')
 
         // create full name
-        let uName =  findUser.first_name + " " + findUser.surname;
+        let u_full_name =  findUser.first_name + " " + findUser.surname;
 
         // if user receive vai phone
         if(ifPhone ){
             sendSms_BD(
                 findUser.phone,
-                `Hi ${uName} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
+                `Hi ${u_full_name} Your Facebook Pro account activation OTP is ${activationCode}. it will expire whitin 15 minute`
             )
         }
 
@@ -481,7 +476,7 @@ const resendAcc_Code = async (req, res, next) => {
                 'Facebook Pro account activation',
                 "Please Check and confirm your account",
                 emailHtml(
-                    uName,  
+                    u_full_name,  
                     link = `${process.env.APP_URL+":"+process.env.CLIENT_PORT}/act-link/${findUser._id}/${act_TE}`, 
                     activationCode
                 )
@@ -493,7 +488,7 @@ const resendAcc_Code = async (req, res, next) => {
         const activationUser = ifEmail ? findUser.email: findUser.phone;
 
         const cockiesend = JSON.stringify({
-            activeName : uName,
+            activeName : u_full_name,
             activeUser: activationUser,
             JwToken: act_TP
         })
@@ -513,7 +508,7 @@ const resendAcc_Code = async (req, res, next) => {
             .json(
                 {
                     message: resMessage,
-                    activeName : uName, 
+                    activeName : u_full_name, 
                     activeUser: activationUser
 
                 }

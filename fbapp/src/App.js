@@ -50,11 +50,7 @@ function App() {
 
 
   useEffect(() => {
-    // if(!authToken){
-    //   dispatch({
-    //     type : USER_LOGOUT
-    //   })
-    // }
+
     if(authToken){
       dispatch(logedInUserData(authToken, navigate))
     }

@@ -19,12 +19,12 @@ const userSchema = mongoose.Schema({
     secondary_name   : {
         type : String,
         trim: true,
-        default : null
+        default : ""
     },
     email  : {
         type : String,
         trim: true,
-        default : null
+        default : ""
     },
     phone   : {
         type : String,
