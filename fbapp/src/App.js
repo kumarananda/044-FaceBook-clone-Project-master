@@ -90,12 +90,15 @@ function App() {
 
         <Route path="/" element={ <HomeRoute/>  }/>
 
+
+        // Route for logedin user
         <Route element={<LogedInUserRoute/>}>
           <Route path="/find-friends" element={ <FindFriends/>  }/>
           <Route path="/friends" element={<Friends/>  }/>
           <Route path="/profile" element={<Profile/>  }/>
         </Route>
 
+        // Route for logedout user
         <Route element={<LogedOutUserRoute/>}>
           <Route path="/login" element={ <LoginPage/> }/>
           <Route path="/register" element={ <RegisterPage/> }/>
@@ -104,9 +107,10 @@ function App() {
           <Route path="/find-account" element={<FindAccount/>}/>
           <Route path="/reset-code-match" element={<ResetCodeMatch/>}/>
           <Route path="/reset-password" element={<ResetPassword/>}/>
-          <Route path="/act-link/:id/:token" element={ <LinkActivation /> }/>
-          <Route path="/reset-link/:id/:token" element={ <ResetLinkVrify /> }/>
         </Route>
+
+        <Route path="/act-link/:id/:token" element={ <LinkActivation /> }/>
+        <Route path="/reset-link/:id/:token" element={ <ResetLinkVrify /> }/>
 
       </Routes>
     
@@ -116,20 +120,3 @@ function App() {
 
 export default App;
 
-
-
-{/* <Routes>
-<Route path="/" element={<AuthenticateUser></AuthenticateUser> }/>
-<Route path="/profie" element={<AuthenticateUser> <Profile/> </AuthenticateUser> }/>
-
-<Route path="/login" element={<AuthRedirectUser> <LoginPage/> </AuthRedirectUser> }/>
-<Route path="/register" element={<AuthRedirectUser> <RegisterPage/> </AuthRedirectUser> }/>
-
-<Route path="/activation" element={<Activation/>}/>
-<Route path="/forgot-password" element={<ForgotPass/>}/>
-<Route path="/find-account" element={<FindAccount/>}/>
-<Route path="/reset-code-match" element={<ResetCodeMatch/>}/>
-<Route path="/reset-password" element={<ResetPassword/>}/>
-<Route path="/act-link/:id/:token" element={ <LinkActivation /> }/>
-<Route path="/reset-link/:id/:token" element={ <ResetLinkVrify /> }/>
-</Routes> */}
