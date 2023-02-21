@@ -20,3 +20,9 @@ export const FIND_SUCCESS =  'FIND_SUCCESS';
 export const FIND_FAILED =  'FIND_FAILED';
 export const FIND_EMPTY =  'FIND_EMPTY';
 
+// update user data
+export const UPDATE_UAER_DATA ="UPDATE_UAER_DATA"
+
+// SETPATHNAME
+export const SETPATHNAME ="SETPATHNAME"
+

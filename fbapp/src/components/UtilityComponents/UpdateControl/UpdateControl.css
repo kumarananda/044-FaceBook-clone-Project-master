@@ -1,0 +1,44 @@
+/** @format */
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.controls .conLeft {
+  display: flex;
+  font-size: 18px;
+}
+.controls .conLeft i {
+  margin-right: 10px;
+}
+.controls .conRight {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.controls .conRight .cancel {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.controls .conRight .save {
+  width: fit-content;
+  color: #fff;
+  background-color: #3578e5;
+}
+.controls .conRight button {
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.controls .conRight button {
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.controls .conRight .save:disabled {
+  background-color: #6e9de8;
+}

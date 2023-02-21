@@ -1,57 +1,63 @@
 /** @format */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import UserAvater from "../UtilityComponents/UserAvater";
 import UserName from "../UtilityComponents/UserName";
 
-const Sidebar = () => {
+const Sidebar = ({ customWidth }) => {
+  // use location
+  const { pathname } = useLocation();
+  // console.log(pathname);
+
+  let barSize = pathname === "/" ? true : false;
+
   return (
     <>
-      <div className="fb-home-body-sidebar">
+      <div style={{ position: "fixed", zIndex: "9999999" }} className={`fb-home-body-sidebar ${barSize ? "" : "minimize"}`}>
         <ul>
-          <li>
+          <li className="active_border">
             <Link to="/profile">
               <div className="body-icon">
                 <UserAvater />
               </div>
 
-              <UserName />
+              {barSize && <UserName font_Size={20} />}
             </Link>
           </li>
 
           <li>
             <Link to="/friends">
               <div className="body-icon"></div>
-              <span>Friends</span>
+              {barSize && <span>Friends</span>}
             </Link>
           </li>
 
           <li>
             <Link to="/">
               <div className="body-icon"></div>
-              <span>Groups</span>
+              {barSize && <span>Groups</span>}
             </Link>
           </li>
 
           <li>
             <Link to="/">
               <div className="body-icon"></div>
-              <span>Marketplace</span>
+              {barSize && <span>Marketplace</span>}
             </Link>
           </li>
 
           <li>
             <Link to="/">
               <div className="body-icon"></div>
-              <span>Watch</span>
+              {barSize && <span>Watch</span>}
             </Link>
           </li>
 
           <li>
             <Link to="/">
               <div className="body-icon"></div>
-              <span>Watch</span>
+              {barSize && <span>Watch</span>}
             </Link>
           </li>
         </ul>

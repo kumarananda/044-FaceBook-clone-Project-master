@@ -1,0 +1,70 @@
+/** @format */
+
+.PopUpFullWidthWraper {
+  position: fixed;
+  z-index: 99999999;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.PopUpFullWidthWraper .pupCloseBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  left: 28px;
+}
+
+.PopUpFullWidthWraper .pupCloseBtn button {
+  border-radius: 50%;
+  font-size: 30px;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+}
+.PopUpFullWidthWraper .pupCloseBtn button svg {
+  font-size: 14px;
+}
+.PopUpFullWidthWraper .pupCloseBtn button svg path {
+  stroke: #fff;
+}
+
+.PopUpFullWidthWraper .fbicon {
+  margin-left: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PopUpFullWidthWraper .fbicon svg {
+  width: 100%;
+  height: 100%;
+  background-color: #1877f2;
+  stroke: #1877f2;
+  fill: #fff;
+  border-radius: 50%;
+  font-size: 33px;
+}
+
+.PopUpFullWidthWraper .userSec {
+  position: fixed;
+  top: 10px;
+  right: 8px;
+  bottom: 0;
+  height: 50px;
+  width: 200px;
+}

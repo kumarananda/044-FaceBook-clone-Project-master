@@ -1,0 +1,50 @@
+/** @format */
+.body {
+  width: 100%;
+  margin: auto;
+  height: 100%;
+}
+.bodyWraper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  background-color: #f0f2f5;
+}
+.bodyWraper .leftSideBar {
+  width: 20%;
+
+  /* background-color: blue; */
+}
+.bodyWraper .leftSideBar .sideWraper {
+  width: 100%;
+
+  /* background-color: blue; */
+}
+.bodyWraper .leftSideBar .sideWraper .leftbarFixed {
+  width: 100%;
+  position: fixed;
+}
+.bodyWraper .medileContent {
+  width: 60%;
+  height: 100%;
+  /* background-color: blueviolet; */
+}
+.bodyWraper .medileContent .medileWraper {
+  width: 100%;
+
+  margin: auto;
+  /* background-color: blueviolet; */
+}
+.bodyWraper .rightSideBar {
+  width: 20%;
+
+  background-color: rgb(190, 95, 95);
+}
+.bodyWraper .rightSideBar .rightWraper {
+  width: 100%;
+}
+.bodyWraper .rightSideBar .rightWraper .rightBarFixed {
+  width: 100%;
+  position: fixed;
+}

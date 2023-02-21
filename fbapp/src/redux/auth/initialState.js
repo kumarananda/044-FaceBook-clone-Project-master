@@ -1,6 +1,5 @@
 
 
-
 // initial state
 const authInitial =  {
     user : {},
@@ -8,6 +7,7 @@ const authInitial =  {
     loading : false,
     message : "",
     actResult: {},
+    pathName : ''
 
 }
 

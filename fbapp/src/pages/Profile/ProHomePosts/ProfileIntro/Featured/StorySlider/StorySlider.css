@@ -1,0 +1,117 @@
+/** @format */
+
+.StorySlider {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.StorySlider .StorySliderBox {
+  height: 540px;
+  width: 350px;
+  background-color: #131314;
+  position: relative;
+  border-radius: 10px;
+}
+
+.StorySlider .StorySliderBox .btn {
+  display: flex;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: calc(50% - 15px);
+  color: #393939;
+  font-size: 29px;
+  align-items: center;
+  justify-content: center;
+}
+
+.StorySlider .StorySliderBox .btn button {
+  border: none;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+}
+.StorySlider .StorySliderBox .leftBtn {
+  left: -35px;
+}
+
+.StorySlider .StorySliderBox .rightBtn {
+  right: -35px;
+}
+
+.StorySlider .StorySliderBox .sliderItem {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.StorySlider .StorySliderBox .sliderItem .sliderBar {
+  width: 100%;
+  transform: translate(0px, 10px);
+  display: flex;
+  gap: 3px;
+  padding: 0 5px;
+}
+.StorySlider .StorySliderBox .sliderItem .sliderBar .barItem {
+  height: 4px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  position: relative;
+}
+.StorySlider .StorySliderBox .sliderItem .sliderBar .barItem .progress {
+  content: "";
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.StorySlider .StorySliderBox .sliderItem .sliderBar .barItem .progress.viewed {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.StorySlider .StorySliderBox .sliderItem .sliderBar .barItem .progress.active {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 1);
+  /* Move the bar infinitely */
+  animation-duration: 5s;
+  /* animation-iteration-count: infinite; */
+  animation-name: progress-bar;
+  animation-fill-mode: forwards;
+}
+
+/* @keyframes progress-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+} */
+@keyframes progress-bar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.StorySlider .StorySliderBox .sliderItem .sliderBar .barItem .progress.viewed-position {
+  transform: translate(0, -4px);
+}

@@ -73,7 +73,14 @@ const userSchema = mongoose.Schema({
     },
     bio  : {
         type : String,
-        default : null
+        default : ''
+    },
+    category :{
+        type : Object,
+        default : {
+            cat: '',
+            show: true,
+        }
     },
     work  : {
         type : Array,
@@ -84,8 +91,8 @@ const userSchema = mongoose.Schema({
         default : []
     },
     featured  : {
-        type : String,
-        default : null
+        type : Array,
+        default : []
     },
     living  : {
         type : String,
@@ -113,6 +120,10 @@ const userSchema = mongoose.Schema({
         default : false
     },
 
+    website  : {
+        type : Array,
+        default : []
+    },
     social_links  : {
         type : Array,
         default : []

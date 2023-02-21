@@ -1,5 +1,11 @@
 /** @format */
 
+.h-100 {
+  height: 100%;
+}
+.fb-profile-header .fb-cover-photo button {
+  z-index: 9999;
+}
 .reg-form .infobtn {
   height: 13px;
   width: 13px;
@@ -320,10 +326,6 @@
   margin-left: 4px;
 }
 
-.fb-home-header {
-  z-index: 999999;
-}
-
 /* for new register page  */
 .sign-up-card-reg-page {
   width: 432px;
@@ -353,4 +355,177 @@
   border: none;
   border-radius: 50%;
   background: transparent;
+}
+
+.fb-home-body {
+  margin: auto;
+  position: relative;
+  width: 100%;
+}
+
+/* sidebar */
+.fb-home-body-sidebar {
+  width: 250px;
+}
+.fb-home-body-sidebar {
+  background-color: #fff;
+  height: calc(100vh - 56px);
+}
+.fb-home-body-sidebar.minimize {
+  width: fit-content;
+  padding-right: 5px;
+  border-right: 1px solid #e4e6eb;
+}
+.fb-home-body-sidebar .active_border {
+  position: relative;
+}
+
+.active_border::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 4px;
+  left: -10px;
+  top: 0;
+  background-color: #1876f2;
+}
+
+.fb-home-body-sidebar ul li {
+  margin-bottom: 10px;
+  padding: 2px 2px;
+  /* margin-right: 15px; */
+}
+.fb-home-body-sidebar ul {
+  margin-top: 10px;
+}
+
+.fb-home-body {
+  padding-left: 0px;
+  padding-top: 0px;
+}
+
+.header-space {
+  height: 57px;
+}
+
+/*  */
+.post-menu .post-dropdown-menu {
+  top: 56px;
+}
+/* fb-profile-body */
+.fb-profile-body {
+  width: 100%;
+  /* background-color: #1876f2; */
+}
+
+.fb-profile-header {
+  margin-top: 0px;
+}
+
+.fb-home-timeline-area {
+  margin: auto;
+}
+
+.fb-home-header {
+  z-index: 99999999;
+  border-bottom: 2px solid #e4e6eb;
+}
+
+.fb-profile-header .fb-cover-photo {
+  height: 405px;
+}
+
+.fb-home-body {
+  min-height: initial;
+}
+
+.profile_page_body {
+  display: flex;
+  background-color: #f0f2f5;
+}
+.fb-profile-details {
+  width: 1040px;
+  justify-content: space-around;
+}
+
+.fb-profile-menu {
+  width: 1040px;
+}
+
+.profile_page_body .profile_page_Wraper {
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 15px;
+  width: 1040px;
+}
+.profile_body_left {
+  position: relative;
+  width: 40%;
+  min-height: auto;
+  color: #2a2c30;
+
+  /* background-color: rgb(44, 167, 60); */
+}
+.profile_body_left {
+  position: relative;
+  width: 50%;
+  min-height: auto;
+  color: #2a2c30;
+}
+.profile_intro button {
+  border: none;
+  padding: 10px;
+  color: #252525;
+  width: 100%;
+  margin: 10px 0px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.profile_body_left_box .introItems {
+  display: flex;
+  gap: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #2a2c30;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.profile_body_left_box .introItems img {
+  height: 20px;
+  width: 20px;
+  filter: contrast(0.3);
+}
+.profile_body_left .introItems span {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.profile_body_left .introItems span.boldText {
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+}
+.profile_body_left .introItems span.boldText:hover {
+  text-decoration: underline;
+}
+.profile_body_right {
+  position: relative;
+  width: 60%;
+  height: auto;
+
+  /* background-color: rgb(127, 189, 29); */
+}
+.fb-profile-details .profile-info {
+  width: auto;
+}
+.profile_body_left_box {
+}
+
+.profile_body_right_box {
 }

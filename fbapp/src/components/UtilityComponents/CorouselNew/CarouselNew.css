@@ -1,0 +1,45 @@
+/** @format */
+/* https://medium.com/tinyso/how-to-create-the-responsive-and-swipeable-carousel-slider-component-in-react-99f433364aa0 */
+
+.carousel {
+  /* margin: auto; */
+  box-sizing: border-box;
+  /* overflow: hidden; */
+  position: relative;
+}
+.oneWrapBox {
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+.carouselBox {
+  text-align: left;
+  margin-left: 0;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.carouselItem {
+  box-sizing: border-box;
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.corousalBtn {
+  position: absolute;
+  text-align: center;
+  background-color: rgba(255 255 255);
+  opacity: 0.6;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coro_left_btn {
+  left: 5px;
+}
+.coro_right_btn {
+  right: 5px;
+}

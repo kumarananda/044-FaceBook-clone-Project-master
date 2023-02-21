@@ -1,4 +1,4 @@
-import { ACTIVATED, ACTIVATION_FAILED, ACTIVATION_SUCCESS, FIND_EMPTY, FIND_FAILED, FIND_SUCCESS, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_FAILED, REGISTER_REQUEST, REGISTER_SUCCESS, USER_ACC_VERIFY, USER_LOGOUT } from "./actionType";
+import { ACTIVATED, ACTIVATION_FAILED, ACTIVATION_SUCCESS, FIND_EMPTY, FIND_FAILED, FIND_SUCCESS, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_FAILED, REGISTER_REQUEST, REGISTER_SUCCESS, SETPATHNAME, UPDATE_UAER_DATA, USER_ACC_VERIFY, USER_LOGOUT } from "./actionType";
 import authInitial from "./initialState";
 
 
@@ -6,6 +6,13 @@ import authInitial from "./initialState";
 // create auth reducer 
 const AuthReducer = (state = authInitial ,{type, payload}) => {
     switch (type) {
+        // update user data
+        case UPDATE_UAER_DATA:
+            return {
+                ...state,
+                user : payload
+            }
+
         // for login
         case LOGIN_USER_REQUEST:
             return {
@@ -94,6 +101,12 @@ const AuthReducer = (state = authInitial ,{type, payload}) => {
                 ...state,
                 actResult : 'filed_empty',
                 message: payload
+
+            }
+        case SETPATHNAME:
+            return {
+                ...state,
+                pathName: payload
 
             }
 

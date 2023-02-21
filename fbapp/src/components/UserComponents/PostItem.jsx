@@ -1,35 +1,11 @@
 /** @format */
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import userPng from "../../_assets/images/user.png";
+import MouseDownModal from "../UtilityComponents/MousDownModal";
 
 const PostItem = () => {
-  const postmenuref = useRef();
-  // post-dropdown-menu
-  const [dropdown, setDropdown] = useState(false);
-
-  useEffect(() => {
-    let handler = e => {
-      if (!postmenuref.current.contains(e.target)) {
-        setDropdown(false);
-        // console.log(menuRef.current.contains(e.target));
-      }
-    };
-
-    if (dropdown) {
-      document.addEventListener("mousedown", handler);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
-  const testaction = () => {
-    alert("test");
-  };
-
-  //
   return (
     <>
       {/* <!-- User Post  --> */}
@@ -75,85 +51,69 @@ const PostItem = () => {
               </span>
             </div>
           </div>
-          <div ref={postmenuref} className="post-menu">
-            <button onClick={() => setDropdown(!dropdown)}>
-              <svg
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                width="1em"
-                height="1em"
-                className="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 x1qx5ct2 xw4jnvo"
-              >
-                <g fillRule="evenodd" transform="translate(-446 -350)">
-                  <path d="M458 360a2 2 0 1 1-4 0 2 2 0 0 1 4 0m6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-12 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0"></path>
-                </g>
-              </svg>
-            </button>
-
-            {dropdown && (
-              <>
-                <div className="post-dropdown-menu">
-                  <ul>
-                    <li>
-                      <Link onClick={testaction} href="/">
-                        <div className="menu-icon"></div>
-                        <span>Save post</span>
-                      </Link>
-                    </li>
-                    <li className="divid"></li>
-                    <li>
-                      <Link onClick={testaction} href="/">
-                        <div className="menu-icon"></div>
-                        <span>Embededt</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>Who can comment on this post ?</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>Edit view history</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>Turn off notification</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>turn off translation</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>Copy link</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>Edit post</span>
-                      </a>
-                    </li>
-                    <li className="divid"></li>
-                    <li>
-                      <a href="/">
-                        <div className="menu-icon"></div>
-                        <span>Move trash</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </>
-            )}
+          <div className="post-menu">
+            <MouseDownModal>
+              <div className="post-dropdown-menu">
+                <ul>
+                  <li>
+                    <Link to="/">
+                      <div className="menu-icon"></div>
+                      <span>Save post</span>
+                    </Link>
+                  </li>
+                  <li className="divid"></li>
+                  <li>
+                    <Link to="/">
+                      <div className="menu-icon"></div>
+                      <span>Embededt</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>Who can comment on this post ?</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>Edit view history</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>Turn off notification</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>turn off translation</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>Copy link</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>Edit post</span>
+                    </a>
+                  </li>
+                  <li className="divid"></li>
+                  <li>
+                    <a href="/">
+                      <div className="menu-icon"></div>
+                      <span>Move trash</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </MouseDownModal>
           </div>
         </div>
         <div className="post-body">

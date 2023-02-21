@@ -1,0 +1,51 @@
+/** @format */
+
+.aboutSec {
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+}
+
+.aboutSec .about {
+}
+.aboutSec .aboutsecLeft {
+  width: 30%;
+  max-width: unset;
+  padding: 12px;
+  padding-right: 10px;
+  border-right: 1px solid #aaaaaa;
+}
+.aboutSec .aboutsecLeft {
+  padding: 12px;
+}
+.aboutSec .aboutsecLeft a {
+  display: block;
+  padding: 7px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: 0.1s;
+  color: #707275;
+}
+.aboutSec .aboutsecLeft a.title {
+  display: inline-block;
+  padding: 7px 10px;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 24px;
+  font-weight: 900;
+}
+.aboutSec .aboutsecLeft a.title:hover {
+  background-color: transparent;
+  color: #000;
+  text-decoration: underline;
+}
+.aboutSec .aboutsecLeft a:hover {
+  background-color: #aaaaaa;
+}
+.aboutSec .aboutsecLeft a.active {
+  color: #2d87db;
+  background-color: #e7f3ff;
+}
+.aboutSec .aboutsecRight {
+  width: 70%;
+}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import userAvatre from "../../_assets/images/useravatar.png";
 
 const UserAvater = () => {
@@ -10,9 +11,9 @@ const UserAvater = () => {
   const userPng = user.photo ? user.photo : userAvatre;
 
   return (
-    <span href="/">
-      <img src={userAvatre} alt="" />
-    </span>
+    <Link to="/profile">
+      <img src={userAvatre} alt="fd" />
+    </Link>
   );
 };
 

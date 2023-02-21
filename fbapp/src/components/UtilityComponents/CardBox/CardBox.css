@@ -1,0 +1,37 @@
+/** @format */
+
+.cardBox {
+  border-radius: 8px;
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); */
+  box-shadow: 2px 0px 20px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 15px;
+  min-height: 40px;
+}
+.cardBoxWP {
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 15px;
+  min-height: 60px;
+}
+
+.header .headerItem .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .headerItem .top a:hover {
+  text-decoration: underline;
+}
+
+.headerItem .top button {
+  border: none;
+  padding: 10px;
+  background: transparent !important;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.headerItem .top button:hover {
+  background: #a1a1a1 !important;
+}

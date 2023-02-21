@@ -12,6 +12,74 @@ const regFormvalidator  = require('../utility/fromvalidator.js');
 
 /**
  * @access public
+ * @route /api/v1/user/featured-update/:id
+ * @method POST
+ */
+const featuredUpdate = async (req, res, next) => {
+
+    try {
+        // const params = req.params;
+        const {token, name,updateOn} = req.body; // token allready checked 
+        const {id} = tokenVerify(token)
+        console.log('id');
+        
+        let slider = []
+        req.files.forEach(element => {
+            slider.push(element.filename)
+        });
+
+
+        const data = await User.findById(id)
+
+        const updateData = await User.findByIdAndUpdate(
+            id, 
+            {featured: [...data.featured, { slider, name,updateOn } ]},
+            {new:true}
+        );
+
+        res.status(200).json({message: "Data update successful", user: updateData})
+
+
+    } catch (error) {
+        next(error);
+    }
+
+}
+/**
+ * @access public
+ * @route /api/v1/user/register
+ * @method PUT
+ */
+const updateUser = async (req, res, next) => {
+
+    try {
+        const params = req.params;
+
+        const {token, user} = req.body;
+        const tokeCheck = tokenVerify(token)
+
+        if(!tokeCheck.login || !params.id ){
+            next(createError(401, "Authorization Faild"))
+        }
+        if(tokeCheck.id !== params.id ){
+            next(createError(401, "Authorization Faild"))
+        }
+        
+        const updateData = await User.findByIdAndUpdate(tokeCheck.id, user, {new:true});
+
+        if(!updateData){
+            next(createError(404, "Data update faild"))
+        }
+
+        res.status(200).json({message: "Data update successful", user: updateData})
+
+    } catch (error) {
+        next(error);
+    }
+
+}
+/**
+ * @access public
  * @route /api/v1/user/register
  * @method POST
  */
@@ -180,7 +248,7 @@ const login = async (req, res, next) => {
             // return next(createError(400, 'Phone or Email is not valid!'));
             return res.status(400).json({
                 message : 'Phone or Email is not valid!',
-                phonemail : true,
+                phonemailError : true,
             })
         }
 
@@ -188,14 +256,14 @@ const login = async (req, res, next) => {
             console.log(user);
             return res.status(400).json({
                 message : 'User not found',
-                phonemail : true,
+                phonemailEror : true,
             })
         }
         if(user){
             if(!verifyPassword(password, user.password)){             
                 return res.status(400).json({
                     message : 'Password not match',
-                    password : true,
+                    passwordError : true,
                 })
             }
         }
@@ -959,4 +1027,6 @@ module.exports = {
     resetPasswordCodeMatch,
     resetPasswordLinkVfy,
     resetPassword,
+    updateUser,
+    featuredUpdate,
 }

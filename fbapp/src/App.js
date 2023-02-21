@@ -1,10 +1,10 @@
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom'
-import Home from './pages/Home/Home';
-import Auth from './pages/Auth/Auth';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Profile from './pages/Profile/Profile';
 import './_assets/css/style.css'
 import './_assets/css/stylecustom.css'
+import './_assets/css/bodyWraper.css'
+import './_assets/css/utility.css'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ForgotPass from './pages/Auth/ForgotPass/ForgotPass';
@@ -18,23 +18,38 @@ import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { logedInUserData } from './redux/auth/authAction';
-import AuthRedirectUser from './middlewares/AuthRedirectUser';
-import AuthenticateUser from './middlewares/AuthenticateUser';
 import LoadingBar from 'react-top-loading-bar'
 import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
-import { USER_LOGOUT } from './redux/auth/actionType';
 import LogedOutUserRoute from './middlewares/LogedOutUserRoute';
 import LogedInUserRoute from './middlewares/LogedInUserRoute';
 import Friends from './pages/Friends/Friends';
 import FindFriends from './pages/FindFriends/FindFriends';
 import HomeRoute from './middlewares/HomeRoute';
+import CorouselPage from './CorouselPage/CorouselPage';
+import ProHomePosts from './pages/Profile/ProHomePosts/ProHomePosts';
+import ProAbout from './pages/Profile/ProAbout/ProAbout';
+import WorkEdu from './pages/Profile/ProAbout/WordEdu/WorkEdu.jsx';
+import PlacesLived from './pages/Profile/ProAbout/PlacesLived/PlacesLived';
+import ContactInfo from './pages/Profile/ProAbout/ContactInfo/ContactInfo';
+import LifeEvents from './pages/Profile/ProAbout/LifeEvents/LifeEvents';
+import Relationship from './pages/Profile/ProAbout/Relationship/Relationship';
+import AboutYou from './pages/Profile/ProAbout/AboutYou/AboutYou';
+import Overview from './pages/Profile/ProAbout/Overview/Overview';
+import { SETPATHNAME } from './redux/auth/actionType';
+import Category from './pages/Profile/ProAbout/Category/Category';
+// import useAgeCal from './hooks/useTest';
+// import useDataget from './hooks/useDataGet';
+
 
 
 
 
 
 function App() {
+
+  //
+  const {pathname} = useLocation()
 
   // get login token
   const authToken = Cookies.get('authToken');
@@ -53,12 +68,24 @@ function App() {
 
     if(authToken){
       dispatch(logedInUserData(authToken, navigate))
+      dispatch({type: SETPATHNAME, payload : pathname})
     }
 
-  },[dispatch, authToken])
+  },[dispatch, authToken,navigate])
 
-// console.log(user);
-// console.log(toploader);
+  useEffect(() => {
+    dispatch({type: SETPATHNAME, payload : pathname})
+  },[pathname])
+
+
+// hooks
+// const [ageCal, setAgeCal] = useAgeCal(1992,)
+// setAgeCal(50)
+// console.log(ageCal);
+
+// const [getdata] = useDataget('https://jsonplaceholder.typicode.com/todos')
+// console.log(getdata);
+
 
 
 
@@ -70,6 +97,9 @@ function App() {
         progress={toploader}
         onLoaderFinished={() => dispatch({type : "LOADER_END"})}
       />
+
+
+
 
       <ToastContainer
       position="top-center"
@@ -83,22 +113,38 @@ function App() {
       draggable
       pauseOnHover
       theme="light"
-      style={{zIndex: 99999999999}}
+      style={{zIndex: 999999999999999}}
       />
       
       <Routes> 
 
         <Route path="/" element={ <HomeRoute/>  }/>
+        <Route path="/CorouselPage" element={ <CorouselPage/>  }/>
 
 
-        // Route for logedin user
+
+        {/* // Route for logedin user */}
         <Route element={<LogedInUserRoute/>}>
           <Route path="/find-friends" element={ <FindFriends/>  }/>
           <Route path="/friends" element={<Friends/>  }/>
-          <Route path="/profile" element={<Profile/>  }/>
+          <Route path="/profile" element={<Profile/> }>
+            <Route path="/profile" element={ <ProHomePosts/>}/>
+            <Route path="/profile/about" element={ <ProAbout/>}>
+              <Route path="/profile/about" element={ <Overview/>}/>
+              <Route path="/profile/about/work-and-edu" element={ <WorkEdu/>}/>
+              <Route path="/profile/about/places-lived" element={ <PlacesLived/>}/>
+              <Route path="/profile/about/contact-info" element={ <ContactInfo/>}/>
+              <Route path="/profile/about/relationship" element={ <Relationship/>}/>
+              <Route path="/profile/about/about-you" element={ <AboutYou/>}/>
+              <Route path="/profile/about/life-event" element={ <LifeEvents/>}/>
+              <Route path="/profile/about/category" element={ <Category/>}/> 
+              
+            </Route>
+          </Route>
+            
         </Route>
 
-        // Route for logedout user
+        {/* // Route for logedout user */}
         <Route element={<LogedOutUserRoute/>}>
           <Route path="/login" element={ <LoginPage/> }/>
           <Route path="/register" element={ <RegisterPage/> }/>

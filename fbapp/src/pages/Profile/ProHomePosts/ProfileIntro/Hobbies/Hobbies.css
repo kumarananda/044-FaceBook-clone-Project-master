@@ -1,0 +1,51 @@
+/** @format */
+.hob {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.hobBox {
+  display: inline-block;
+}
+.hobBox .hobItem {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #1877f2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  background-color: rgb(134, 218, 255);
+}
+.hobBox .hobItem img {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+.hobBox .hobItem .text {
+}
+.hobBox .hobItem .close {
+}
+
+.hobBox .hobItem:hover .close {
+  color: #1877f2;
+  background-color: #fff;
+}
+
+.hobBox .hobItem .close {
+  border-radius: 50%;
+  padding: 3px;
+  width: 21px;
+  height: 21px;
+}
+.hobBox .hobItem .close svg {
+  font-size: 15px;
+  position: relative;
+  position: relative;
+}

@@ -2,19 +2,13 @@
 
 import React from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import AuthFooter from "../../components/AuthComponents/AuthFooter";
 import Login from "../../components/AuthComponents/Login";
-import Register from "../../components/AuthComponents/Register";
 import FBlogo from "../../_assets/icons/facebook.svg";
-import crouseBtn from "../../_assets/icons/cross.png";
 import RegisterModal from "../../components/AuthComponents/RegisterModal";
 
 const Auth = () => {
   const [register, setRegister] = useState(false);
-
-  const params = useParams();
-  console.log(params);
 
   return (
     <>

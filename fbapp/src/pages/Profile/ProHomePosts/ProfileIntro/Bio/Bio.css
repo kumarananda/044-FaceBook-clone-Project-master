@@ -1,0 +1,88 @@
+/** @format */
+
+.bioSection {
+}
+.bioSection p {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.bioSection .textEdit {
+}
+.bioSection .textEdit .remaning p {
+  text-align: right;
+  margin-bottom: 3px;
+}
+
+.bioSection .textEdit .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bioSection .textEdit .controls .conLeft {
+  display: flex;
+}
+
+.bioSection .textEdit .controls .conLeft i {
+  background-position: 0px -220px;
+  background-size: 20px 486px;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 5px;
+}
+.bioSection .textEdit .controls .conLef h5 {
+  display: inline-block;
+  position: relative;
+  top: -4px;
+  font-size: 15px;
+}
+.bioSection .textEdit .controls .conRight {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.bioSection .textEdit .controls .conRight button {
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.bioSection .textEdit .controls .conRight .cancel {
+  width: fit-content;
+}
+.bioSection .textEdit .controls .conRight .save {
+  width: fit-content;
+  color: #fff;
+  background-color: #3578e5;
+}
+.bioSection .textEdit .controls .conRight .save:disabled {
+  background-color: #6e9de8;
+}
+
+.bioSection .textEdit textarea {
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  overflow-y: auto;
+  color: black;
+  text-align: center;
+  font-weight: 700;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+  resize: none;
+  border: 1px solid rgba(123, 123, 123, 0.5);
+}
+.bioSection .textEdit textarea:hovar {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5));
+  background-size: cover;
+  background-position: center center;
+}
+.bioSection .textEdit textarea:focus {
+  border: 1px solid #3578e5;
+  background-color: rgba(123, 123, 123, 0.15);
+}

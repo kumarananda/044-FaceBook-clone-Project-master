@@ -1,7 +1,7 @@
 import axios from "axios"
 import createTost from "../../utility/tost.js";
 import Cookies from "js-cookie";
-import { ACTIVATED, ACTIVATION_FAILED, ACTIVATION_SUCCESS, FIND_EMPTY, FIND_FAILED, FIND_SUCCESS, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_FAILED, REGISTER_REQUEST, REGISTER_SUCCESS, USER_LOGOUT } from "./actionType";
+import { ACTIVATED, ACTIVATION_FAILED, ACTIVATION_SUCCESS, FIND_EMPTY, FIND_FAILED, FIND_SUCCESS, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_FAILED, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_UAER_DATA, USER_LOGOUT } from "./actionType";
 import { setMonthShortName } from "../../utility/satvalus.js";
 import { checkCode6, checkNumber } from "../../utility/validate.js";
 // import { passwordValid } from "../../utility/validate.js";
@@ -236,7 +236,7 @@ export const findForgotUser = (search, setSearch, setErrorBorder, navigate) => a
         try {
             await axios.post('/api/v1/user/search-forgot-user', {recoverID:search})
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 dispatch({
                     type: FIND_SUCCESS,
                     payload : res.data.message
@@ -509,6 +509,8 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
         }
         })
         .then(res => {
+
+            console.log(res.data);
         
         if(res.data.user.isActivate){
           dispatch({type : LOGIN_USER_SUCCESS, payload : res.data.user});
@@ -518,13 +520,13 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
             dispatch({type : USER_LOGOUT})
             createTost(res.data.message)
             // console.log(res.data.user.isActivate);
-            Cookies.remove('authToken')
+            // Cookies.remove('authToken')
 
         }
         
         })
         .catch(error => {
-            console.log('get error');
+            console.log(error.response.data);
 
             dispatch({type : USER_LOGOUT})
             createTost(error.response.data.message)
@@ -532,11 +534,11 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
                 Cookies.remove('authToken')
             }
             console.log(error.response.data.message);
-            console.log('error called');
+
         }) 
 
     }catch(error){
-        console.log('get error');
+        console.log(error.response.data);
         
         dispatch({type : USER_LOGOUT})
         createTost(error.response.data.message)
@@ -544,6 +546,59 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
             Cookies.remove('authToken')
         }
         console.log(error.response.data.message);
+    }
+    
+}
+
+// get logedin user 
+export const updateUserData = (user, setState ) => async (dispatch) => {
+
+    const authToken = Cookies.get('authToken')
+
+    try{ 
+        axios
+        .put(`/api/v1/user/profile-update/${user._id}`, { user, token: authToken })
+        .then(res => {
+            dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
+            setState(false)
+            createTost(res.data.message, "success")
+          console.log(res.data.message);
+        })
+        .catch(error => {
+            // createTost(error.response.data.message, )
+            console.log(error);
+        });
+    }catch(error){
+        // createTost(error.response.data.message)
+        console.log(error);
+    }
+    
+}
+
+// get logedin user 
+export const updateFeatured = (data, id, token, setState) => async (dispatch) => {
+
+    try{ 
+        axios
+        .post(`/api/v1/user/featured-update/${id}`, data,{
+            headers: {
+                'Authorization': `Bearer `+token
+            }
+        })
+        .then(res => {
+            dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
+            setState()
+            createTost(res.data.message, "success")
+            console.log(res.data.message);
+        console.log(res);
+        })
+        .catch(error => {
+            createTost(error.response.data.message, )
+            console.log(error);
+        });
+    }catch(error){
+        createTost(error.response.data.message)
+        console.log(error);
     }
     
 }
