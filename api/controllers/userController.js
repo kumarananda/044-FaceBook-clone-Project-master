@@ -12,15 +12,39 @@ const regFormvalidator  = require('../utility/fromvalidator.js');
 
 /**
  * @access public
- * @route /api/v1/user/featured-update/:id
+ * @route /profile-photo-update/:id
  * @method POST
  */
+const profilePhotoUpdate = async (req, res, next) => {
+
+    try {
+
+
+        
+        const {id} = req.params;
+        // const {token, } = req.body; // token allready checked with mudilewear
+        // const {id} = tokenVerify(token);
+ 
+        const updateData = await User.findByIdAndUpdate(
+            id, 
+            {profile_photo: req.file.filename},
+            {new:true}
+        );
+
+        res.status(200).json({message: "Profile photo update successful", user: updateData})
+ 
+
+    } catch (error) {
+        next(error);
+    }
+
+}
 const featuredUpdate = async (req, res, next) => {
 
     try {
         // const params = req.params;
-        const {token, name,updateOn} = req.body; // token allready checked 
-        const {id} = tokenVerify(token)
+        const {token, name,updateOn} = req.body; 
+        const {id} = tokenVerify(token) // token allready checked 
         console.log('id');
         
         let slider = []
@@ -1029,4 +1053,5 @@ module.exports = {
     resetPassword,
     updateUser,
     featuredUpdate,
+    profilePhotoUpdate,
 }

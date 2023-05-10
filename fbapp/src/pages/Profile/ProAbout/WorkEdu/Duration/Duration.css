@@ -1,0 +1,46 @@
+/** @format */
+
+.coruntlyWorked {
+  display: flex;
+  gap: 8px;
+}
+.coruntlyWorked label {
+  /* height: 30px;
+  width: 30px; */
+}
+.coruntlyWorked input {
+  height: 20px;
+  width: 20px;
+}
+.coruntlyWorked h4 {
+  font-size: 15px;
+}
+
+.durationInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.durationInput .fromTo {
+  font-size: 15px;
+  font-weight: 400;
+}
+.durationInput .inputes {
+}
+.durationInput .inputes label {
+  font-size: 15px;
+}
+.durationInput .inputes select {
+  font-size: 16px;
+  padding: 10px;
+  background: #d5d6d7;
+  border: none;
+  border-radius: 5px;
+}
+.durationInput .inputes select option {
+  font-size: 16px;
+  padding: 10px;
+  background: #d5d6d7;
+  border: none;
+  border-radius: 5px;
+}

@@ -1,0 +1,33 @@
+/** @format */
+
+.profile-photo-position {
+  position: relative;
+}
+.profile-photo-position .update-control-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+}
+
+.coverUpdateBtn {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+}
+.coverUpdateBtn label {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 900;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+  background-color: #fff;
+  font-family: inherit;
+}

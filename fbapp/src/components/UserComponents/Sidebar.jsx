@@ -17,13 +17,10 @@ const Sidebar = ({ customWidth }) => {
       <div style={{ position: "fixed", zIndex: "9999999" }} className={`fb-home-body-sidebar ${barSize ? "" : "minimize"}`}>
         <ul>
           <li className="active_border">
-            <Link to="/profile">
-              <div className="body-icon">
-                <UserAvater />
-              </div>
-
-              {barSize && <UserName font_Size={20} />}
-            </Link>
+            <div className="body-icon">
+              <UserAvater />
+            </div>
+            {barSize && <UserName font_Size={20} />}
           </li>
 
           <li>

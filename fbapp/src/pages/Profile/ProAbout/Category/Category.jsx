@@ -1,10 +1,11 @@
 /** @format */
 import "./Category.css";
 import React, { useEffect, useState } from "react";
-import AddCirclePlus, { DetailsItemShow } from "../../../../components/UtilityComponents/AddCirclePlus/AddCirclePlus";
+import AddCirclePlus from "../../../../components/UtilityComponents/AddCirclePlus/AddCirclePlus";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserData } from "../../../../redux/auth/authAction";
 import icons from "../../../../_assets/icons/post-menu.png";
+import DetailsItemShow from "../WorkEdu/DetailsItemShow";
 
 const Category = () => {
   const dispatch = useDispatch();

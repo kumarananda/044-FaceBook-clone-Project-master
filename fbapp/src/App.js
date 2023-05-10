@@ -29,7 +29,7 @@ import HomeRoute from './middlewares/HomeRoute';
 import CorouselPage from './CorouselPage/CorouselPage';
 import ProHomePosts from './pages/Profile/ProHomePosts/ProHomePosts';
 import ProAbout from './pages/Profile/ProAbout/ProAbout';
-import WorkEdu from './pages/Profile/ProAbout/WordEdu/WorkEdu.jsx';
+import WorkEdu from './pages/Profile/ProAbout/WorkEdu/WorkEdu.jsx';
 import PlacesLived from './pages/Profile/ProAbout/PlacesLived/PlacesLived';
 import ContactInfo from './pages/Profile/ProAbout/ContactInfo/ContactInfo';
 import LifeEvents from './pages/Profile/ProAbout/LifeEvents/LifeEvents';
@@ -40,6 +40,7 @@ import { SETPATHNAME } from './redux/auth/actionType';
 import Category from './pages/Profile/ProAbout/Category/Category';
 // import useAgeCal from './hooks/useTest';
 // import useDataget from './hooks/useDataGet';
+
 
 
 
@@ -71,7 +72,7 @@ function App() {
       dispatch({type: SETPATHNAME, payload : pathname})
     }
 
-  },[dispatch, authToken,navigate])
+  },[dispatch, authToken, navigate])
 
   useEffect(() => {
     dispatch({type: SETPATHNAME, payload : pathname})
@@ -137,7 +138,6 @@ function App() {
               <Route path="/profile/about/relationship" element={ <Relationship/>}/>
               <Route path="/profile/about/about-you" element={ <AboutYou/>}/>
               <Route path="/profile/about/life-event" element={ <LifeEvents/>}/>
-              <Route path="/profile/about/category" element={ <Category/>}/> 
               
             </Route>
           </Route>

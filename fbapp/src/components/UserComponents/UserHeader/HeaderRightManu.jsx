@@ -61,7 +61,7 @@ const HeaderRightManu = () => {
         <div ref={dropManuRef} className="fb-user-item">
           <button className="nutural-circle-btn" onClick={() => setDropManu(!dropManu)}>
             <span>
-              <img src={userPng} alt="" />
+              <UserAvater />
             </span>
           </button>
 

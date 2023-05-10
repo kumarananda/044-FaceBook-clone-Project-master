@@ -551,7 +551,7 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
 }
 
 // get logedin user 
-export const updateUserData = (user, setState ) => async (dispatch) => {
+export const updateUserData = (user ) => async (dispatch) => {
 
     const authToken = Cookies.get('authToken')
 
@@ -560,7 +560,6 @@ export const updateUserData = (user, setState ) => async (dispatch) => {
         .put(`/api/v1/user/profile-update/${user._id}`, { user, token: authToken })
         .then(res => {
             dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
-            setState(false)
             createTost(res.data.message, "success")
           console.log(res.data.message);
         })
@@ -575,7 +574,7 @@ export const updateUserData = (user, setState ) => async (dispatch) => {
     
 }
 
-// get logedin user 
+// get 
 export const updateFeatured = (data, id, token, setState) => async (dispatch) => {
 
     try{ 
@@ -588,6 +587,33 @@ export const updateFeatured = (data, id, token, setState) => async (dispatch) =>
         .then(res => {
             dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
             setState()
+            createTost(res.data.message, "success")
+            console.log(res.data.message);
+        console.log(res);
+        })
+        .catch(error => {
+            createTost(error.response.data.message, )
+            console.log(error);
+        });
+    }catch(error){
+        createTost(error.response.data.message)
+        console.log(error);
+    }
+    
+}
+// get logedin user 
+export const updateProfilePhoto = (data, id, token, discardData) => async (dispatch) => {
+
+    try{ 
+        axios
+        .put(`/api/v1/user/profile-photo-update/${id}`, data,{
+            headers: {
+                'Authorization': `Bearer `+token
+            }
+        })
+        .then(res => {
+            dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
+            discardData()
             createTost(res.data.message, "success")
             console.log(res.data.message);
         console.log(res);

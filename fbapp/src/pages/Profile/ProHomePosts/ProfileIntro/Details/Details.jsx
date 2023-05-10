@@ -13,7 +13,6 @@ import { BsPlusCircle } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import AddCirclePlus, { SwitchCompo } from "../../../../../components/UtilityComponents/AddCirclePlus/AddCirclePlus";
 import { useSelector } from "react-redux";
 
 const Details = () => {
@@ -101,22 +100,6 @@ const Details = () => {
             <p style={{ display: "block", textAlign: "center" }}>Details you select will be public.</p>
           </div>
           <div className="editDetailsContentBox">
-            {/* Category */}
-            <div className="detItem">
-              <h4 className="dTitles">Category</h4>
-              <ul>
-                <SwitchCompo
-                  link="/profile/about/category"
-                  // switchStatus={check.category}
-                  action={handleCheck}
-                  name={"category"}
-                  title={user?.category?.cat}
-                  data={check.category}
-                />
-
-                <AddCirclePlus link="/profile/about/category" title="Add category" />
-              </ul>
-            </div>
             {/* work */}
             <div className="detItem">
               <h4 className="dTitles">Work</h4>

@@ -1,33 +1,34 @@
 /** @format */
 
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import UserAvater from "../UtilityComponents/UserAvater";
-import UserName from "../UtilityComponents/UserName";
+import React, { useState } from "react";
+import "./ProfileHeader.css";
+import { Link } from "react-router-dom";
+import UserAvater from "../../../components/UtilityComponents/UserAvater";
+import UserName from "../../../components/UtilityComponents/UserName";
+import ProfilePhotoUpdate from "./ProfilePhotoUpdate/ProfilePhotoUpdate";
+import BtnCamaraIcon from "../../../components/UtilityComponents/BtnCamaraIcon/BtnCamaraIcon";
+import CoverPhotoUdate from "./CoverPhotoUdate/CoverPhotoUdate";
 
 const ProfileHeader = () => {
-  // const { pathname } = useLocation();
-
-  // console.log(pathname);
+  const [ppModal, setPpModal] = useState(false);
 
   return (
     <>
       <div className="fb-profile-body">
-        {/* <!-- Cover Photo  --> */}
         <div className="fb-profile-header">
-          <div className="fb-header-shad"></div>
-          <div className="fb-cover-photo">
-            <img src="https://images.pexels.com/photos/1323206/pexels-photo-1323206.jpeg?cs=srgb&dl=pexels-mixu-1323206.jpg&fm=jpg" alt="" />
-            <button>
-              <span className="camera-icon"></span> Edit cover photo
-            </button>
-          </div>
+          {/* <!-- Cover Photo  --> */}
+          <CoverPhotoUdate />
+
+          <ProfilePhotoUpdate modalOpen={ppModal} setModalOpen={setPpModal} />
           <div className="fb-profile-details">
             <div className="profile-info">
-              <div className="profile-photo">
+              <div className="profile-photo profile-photo-position">
                 <UserAvater />
-                {/* <img src={user_photo} alt="" /> */}
+                <div onClick={() => setPpModal(true)} className="update-control-btn">
+                  <BtnCamaraIcon />
+                </div>
               </div>
+
               <div className="profile-desc">
                 <h1>
                   <UserName />
@@ -39,12 +40,10 @@ const ProfileHeader = () => {
                 <div className="profile-friends-list">
                   <ul>
                     <li>
-                      <UserAvater />
-
-                      {/* <img
+                      <img
                         src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=170667a&w=0&k=20&c=MRMqc79PuLmQfxJ99fTfGqHL07EDHqHLWg0Tb4rPXQc="
                         alt=""
-                      /> */}
+                      />
                     </li>
                     <li>
                       <img

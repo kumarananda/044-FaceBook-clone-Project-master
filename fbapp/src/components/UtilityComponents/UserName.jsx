@@ -8,12 +8,15 @@ const UserName = ({ font_Size }) => {
   // use seclector
   const { user } = useSelector(state => state.auth);
 
+  console.log(user);
   const userFullName = user.first_name + " " + user.surname;
 
   // return <span>{userFullName}</span>;
   return (
     <Link to="/profile">
-      <span style={{ fontWeight: 800, color: "black", fontSize: `${font_Size ? font_Size + "px" : "20px"}` }}>{userFullName}</span>
+      <span style={{ fontWeight: 800, color: "black", fontSize: `${font_Size ? font_Size + "px" : "20px"}` }}>
+        {user?.first_name ? userFullName : ""}
+      </span>
     </Link>
   );
 };

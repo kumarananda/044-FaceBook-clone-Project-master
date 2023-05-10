@@ -1,10 +1,10 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../../../../components/UtilityComponents/FullScreenModal/FullScreenModal.css";
 import "./Featured.css";
 import Carousel, { CorouselItem } from "../../../../../components/UtilityComponents/Carousel/Carousel";
 import PopUpFullWidth from "../../../../../components/UtilityComponents/PopUpFullWidth/PopUpFullWidth";
-import userImg from "../../../../../_assets/images/user.png";
+// import userImg from "../../../../../_assets/images/user.png";
 import FullScSimpleModal from "../../../../../components/UtilityComponents/FullScreenModal/FullScreenSimple";
 import { GoX, GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
@@ -16,7 +16,7 @@ import { updateFeatured } from "../../../../../redux/auth/authAction";
 import Cookies from "js-cookie";
 import { timeSince } from "../../../../../utility/date";
 import { FaPen } from "react-icons/fa";
-import sampalephoto from "../../../../../_assets/images/user.png";
+// import sampalephoto from "../../../../../_assets/images/user.png";
 
 const Featured = () => {
   const dispatch = useDispatch();
@@ -24,9 +24,7 @@ const Featured = () => {
   const { user } = useSelector(state => state.auth);
   const authToken = Cookies.get("authToken");
 
-  // test array only
   // Featured popup
-  let data = [1, 2, 3, 4, 5, 6, 7];
   const [popupShow, setPopupShow] = useState(false);
   const [userIndex, setUserIndex] = useState("");
   const handleFeaturedShow = (e, index) => {
@@ -57,6 +55,7 @@ const Featured = () => {
   const handleFeaturedModal = () => {
     setFeaturedModal(!featuredModal);
   };
+
   const handleFeaturedClose = () => {
     setFeaturedModal(false);
     setModalTrans(0);
@@ -101,7 +100,7 @@ const Featured = () => {
         newUpload.push(item);
       }
     });
-    console.log(findDulicate);
+    // console.log(findDulicate);
 
     setPhotos(prev => [...newUpload, ...prev]);
     setSelectedPhotos(prev => [...newUpload, ...prev]);
@@ -130,6 +129,7 @@ const Featured = () => {
     }
   };
 
+  //
   const handleFeaturedUpload = () => {
     const data = new FormData();
     upPhotos.forEach(item => {
@@ -141,6 +141,7 @@ const Featured = () => {
 
     dispatch(updateFeatured(data, user._id, authToken, handleFeaturedClose));
   };
+
   const handleCollEdit = (e, index) => {
     e.preventDefault();
     alert(index);
@@ -175,57 +176,52 @@ const Featured = () => {
                             {user?.featured && (
                               <>
                                 {user?.featured.map((item, index) => (
-                                  <>
-                                    <div key={index} style={{ width: "50%" }} className="collItems">
-                                      <a onClick={e => handleCollEdit(e, index)} href="/">
-                                        <div style={{ width: "100%" }} className="itemWraper">
-                                          <div
-                                            style={{ display: "flex", padding: 0, margin: "8px", borderRadius: "5px" }}
-                                            className="photoPreViewbox"
-                                          >
-                                            <div style={{ width: "auto" }} className="photoPreViewItem">
-                                              <div style={{}} className="photoPreView" alt="">
-                                                <label
-                                                  style={{ width: "100%", height: "100%" }}
-                                                  htmlFor={`checkbox${"index"}`}
-                                                  className="labelOverlay"
-                                                >
-                                                  <img src={`/featured/${item.slider[0]}`} alt="" />
-                                                </label>
-                                              </div>
+                                  <div key={index} style={{ width: "50%" }} className="collItems">
+                                    <a onClick={e => handleCollEdit(e, index)} href="/">
+                                      <div style={{ width: "100%" }} className="itemWraper">
+                                        <div style={{ display: "flex", padding: 0, margin: "8px", borderRadius: "5px" }} className="photoPreViewbox">
+                                          <div style={{ width: "auto" }} className="photoPreViewItem">
+                                            <div style={{}} className="photoPreView" alt="">
+                                              <label
+                                                style={{ width: "100%", height: "100%" }}
+                                                htmlFor={`checkbox${"index"}`}
+                                                className="labelOverlay"
+                                              >
+                                                <img src={`/featured/${item.slider[0]}`} alt="" />
+                                              </label>
                                             </div>
+                                          </div>
+                                          <div
+                                            style={{
+                                              width: "100%",
+                                              maxWidth: "55%",
+                                              display: "flex",
+                                              justifyContent: "space-between",
+                                              alignItems: "center",
+                                            }}
+                                            className="sliderInfo"
+                                          >
                                             <div
                                               style={{
-                                                width: "100%",
-                                                maxWidth: "55%",
                                                 display: "flex",
-                                                justifyContent: "space-between",
-                                                alignItems: "center",
+                                                flexDirection: "column",
+                                                justifyContent: "center",
+                                                height: "100%",
                                               }}
-                                              className="sliderInfo"
+                                              className="infoContent"
                                             >
-                                              <div
-                                                style={{
-                                                  display: "flex",
-                                                  flexDirection: "column",
-                                                  justifyContent: "center",
-                                                  height: "100%",
-                                                }}
-                                                className="infoContent"
-                                              >
-                                                <div className="collName">{item.name}</div>
-                                                <div className="itemCount">{item.slider.length + " Item"}</div>
-                                                <div className="itemUpdate">Update on {timeSince(item.updateOn)}</div>
-                                              </div>
-                                              <div className="button">
-                                                <FaPen />
-                                              </div>
+                                              <div className="collName">{item.name}</div>
+                                              <div className="itemCount">{item.slider.length + " Item"}</div>
+                                              <div className="itemUpdate">Update on {timeSince(item.updateOn)}</div>
+                                            </div>
+                                            <div className="button">
+                                              <FaPen />
                                             </div>
                                           </div>
                                         </div>
-                                      </a>
-                                    </div>
-                                  </>
+                                      </div>
+                                    </a>
+                                  </div>
                                 ))}
                               </>
                             )}
@@ -247,7 +243,7 @@ const Featured = () => {
 
                 {/* transform 1 */}
                 <div style={{ minWidth: "100%" }} className="modal-section-item sec2">
-                  {modalTrans == 1 && (
+                  {modalTrans === 1 && (
                     <>
                       <div className="modal-header">
                         <div className="modal-header-content">
@@ -322,7 +318,7 @@ const Featured = () => {
 
                 {/* transform 2 */}
                 <div style={{ minWidth: "100%" }} className="modal-section-item sec3">
-                  {modalTrans == 2 && (
+                  {modalTrans === 2 && (
                     <>
                       <div className="modal-header">
                         <div className="modal-header-content">
@@ -415,7 +411,7 @@ const Featured = () => {
                                   </div>
                                 );
                               } else {
-                                return;
+                                return "";
                               }
                             })}
                           </div>
@@ -479,6 +475,7 @@ const Featured = () => {
           {user?.featured?.length ? (
             <>
               <Carousel CusRightBtnPosi={""} item_width={120} btnHide={true} show_items={3} arraylan={user?.featured?.length}>
+                {/*  */}
                 {user?.featured.map((i, index) => (
                   <div key={index} className="itemWraper">
                     <CorouselItem itemWidth={120} index={index}>
@@ -491,6 +488,7 @@ const Featured = () => {
                           <div
                             style={{
                               backgroundImage: `url(${`/featured/${i.slider[0]}`})`, // src={`/featured/${item.slider[0]}`}
+                              // backgroundImage: `url(${`/featured/${i.slider[0]}`})`, // src={`/featured/${item.slider[0]}`}
                               display: "block",
                               backgroundPosition: "center",
                               backgroundRepeat: "no-repeat",
@@ -530,38 +528,3 @@ const Featured = () => {
 };
 
 export default Featured;
-
-{
-  /*  <label className="roundLabel">
-                                {false && (
-                                  <>
-                                    <div
-                                      style={{
-                                        backgroundColor: "#fff",
-                                      }}
-                                      className="roundBox"
-                                    >
-                                      <box-icon size={{ width: "50px" }} color={"#54C7EC"} name="check"></box-icon>
-                                    </div>
-                                  </>
-                                )}
-                                {true && (
-                                  <>
-                                    <div
-                                      style={{
-                                        backgroundColor: "transparent",
-                                      }}
-                                      className="roundBox"
-                                    >
-                                      <box-icon
-                                        size={{ width: "50px", backgroundColor: "transparent" }}
-                                        color={"transparent"}
-                                        name="check"
-                                      ></box-icon>
-                                    </div>
-                                  </>
-                                )}
-
-                                <input checked onChange={e => handleSelected(e, index)} type="checkbox" id={`checkbox${index}`} />
-                              </label> */
-}

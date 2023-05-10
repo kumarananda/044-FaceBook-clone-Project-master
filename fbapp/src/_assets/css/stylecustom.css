@@ -521,6 +521,14 @@
 
   /* background-color: rgb(127, 189, 29); */
 }
+
+.profile-photo img {
+  width: 168px;
+  height: 168px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+}
 .fb-profile-details .profile-info {
   width: auto;
 }
@@ -528,4 +536,17 @@
 }
 
 .profile_body_right_box {
+}
+
+.fb-home-body-sidebar ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.fb-home-body-sidebar ul li {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 6px;
 }

@@ -10,7 +10,7 @@ import Overview from "./Overview/Overview.jsx";
 import LifeEvents from "./LifeEvents/LifeEvents";
 import AboutYou from "./AboutYou/AboutYou";
 import ContactInfo from "./ContactInfo/ContactInfo";
-import WordEdu from "./WordEdu/WorkEdu";
+import WordEdu from "./WorkEdu/WorkEdu";
 import { useSelector } from "react-redux";
 import Category from "./Category/Category";
 
@@ -42,9 +42,6 @@ const ProAbout = () => {
               <Link className={`${"active"}`} to={"/profile/about"}>
                 Overview
               </Link>
-              <Link className={""} to={"/profile/about/category"}>
-                Category
-              </Link>
 
               <Link onClick={handleActiv} to={"/profile/about/work-and-edu"}>
                 Work and education
@@ -65,7 +62,6 @@ const ProAbout = () => {
                   <AboutYou />
                   <ContactInfo />
                   <Relationship />
-                  <Category />
                 </Outlet>
               </div>
             </div>

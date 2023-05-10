@@ -7,12 +7,11 @@ import userAvatre from "../../_assets/images/useravatar.png";
 
 const UserAvater = () => {
   const { user } = useSelector(state => state.auth);
-
-  const userPng = user.photo ? user.photo : userAvatre;
+  const userPng = user.profile_photo ? `/profile/${user.profile_photo}` : userAvatre;
 
   return (
     <Link to="/profile">
-      <img src={userAvatre} alt="fd" />
+      <img src={userPng} alt="fd" />
     </Link>
   );
 };

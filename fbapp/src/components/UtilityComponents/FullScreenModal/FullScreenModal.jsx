@@ -57,7 +57,7 @@ const FullScreenModal = ({
 
       {/* <!-- MODAL BOX  --> */}
       {modalOpen && (
-        <div style={{ zIndex: `${ZIndex ? ZIndex : 99999999}` }} className="modal-blur-box">
+        <div style={{ zIndex: `${ZIndex ? ZIndex : 999999999}` }} className="modal-blur-box">
           <div ref={ref} className="refWraper">
             <div style={{ width: `${boxWidth ? boxWidth + "px" : "500px"}` }} className="modal-card">
               {headerHide && (
@@ -137,9 +137,9 @@ const FullScreenModal = ({
                       <td>If not required ("none")</td>
                     </tr>
                     <tr>
-                      <td>footer</td>
-                      <td>String</td>
-                      <td>If not required ("none")</td>
+                      <td>footerHide</td>
+                      <td>Boolean</td>
+                      <td>Default false</td>
                     </tr>
                     <tr>
                       <td>outCickHide</td>

@@ -65,12 +65,10 @@ const StorySlider = ({ setShow, data, apiPath }) => {
           <div className="sliderItem" style={{ backgroundImage: `url(${apiPath + data[popItemIndex]})` }}>
             <div className="sliderBar">
               {data.map((item, index) => (
-                <>
-                  <div key={index} className="barItem">
-                    <div className={`progress   ${popItemIndex === index ? "active" : ""}`}></div>
-                    <div className={`progress viewed-position  ${index < popItemIndex ? "viewed" : ""}`}></div>
-                  </div>
-                </>
+                <div key={index} className="barItem" >
+                  <div className={`progress   ${popItemIndex === index ? "active" : ""}`}></div>
+                  <div className={`progress viewed-position  ${index < popItemIndex ? "viewed" : ""}`}></div>
+                </div>
               ))}
             </div>
           </div>

@@ -1,0 +1,12 @@
+/** @format */
+
+textarea:focus-visible {
+  border: none !important;
+}
+textarea {
+  border: none !important;
+  outline: none;
+}
+textarea:active {
+  border: none !important;
+}

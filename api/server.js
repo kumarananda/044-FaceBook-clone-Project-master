@@ -27,7 +27,7 @@ const mongoDBConnect = async() => {
     }
 }
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
     mongoDBConnect()
     console.log(`App running on port ${port}..`);
