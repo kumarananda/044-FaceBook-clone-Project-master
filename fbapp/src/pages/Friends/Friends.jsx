@@ -12,7 +12,7 @@ const Friends = () => {
         <div className="bodyWraper">
           <div style={{ width: `20%` }} className="leftSideBar">
             <div className="sideWraper">
-              <div className="leftbarFixed">fdsfdsf</div>
+              <div className="leftbarFixed">{/* Contents */}</div>
             </div>
           </div>
           <div style={{ width: `60%` }} className="medileContent">

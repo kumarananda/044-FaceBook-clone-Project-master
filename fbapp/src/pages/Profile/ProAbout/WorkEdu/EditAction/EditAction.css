@@ -1,0 +1,54 @@
+/** @format */
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls .conLeft select {
+  font-size: 16px;
+  padding: 5px;
+  background: #e7eaed;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.2s;
+}
+.controls .conRigh {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls .conLeft select:hover {
+  background: #d5d6d7;
+}
+
+.controls .conRight button {
+  font-size: 16px;
+  padding: 10px;
+  background: #e7eaed;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.2s;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.controls .conRight button:hover {
+  background: #d5d6d7;
+}
+.controls .conRight button:nth-child(2) {
+  background: #1877f2;
+  color: white;
+}
+.controls .conRight button:nth-child(2):hover {
+  background: #1173f4;
+}
+.controls .conRight button:nth-child(2):disabled {
+  background: #b0b4b8;
+  color: rgb(88, 87, 87);
+}

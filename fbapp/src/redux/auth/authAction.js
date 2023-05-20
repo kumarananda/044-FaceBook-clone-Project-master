@@ -21,7 +21,7 @@ export const userRegister = (data, setRegister , navigate, e, setInput, setFildE
                 type: REGISTER_SUCCESS,
                 payload: res.data.message
             })
-            console.log(res.data.message);
+            // console.log(res.data.message);
             
             setInput({
                 fname: "",
@@ -59,7 +59,7 @@ export const userRegister = (data, setRegister , navigate, e, setInput, setFildE
                 type : REGISTER_FAILED,
                 payload: error.response.data.message
             })
-            console.log(error.response.data.message);
+            // console.log(error.response.data.message);
         })
         
     } catch (error) {
@@ -92,7 +92,7 @@ export const codeActivation = (code, token, setErrBorder, navigate) => async (di
                 payload: res.data.message
             })
 
-            console.log(res.data.message);
+            // console.log(res.data.message);
 
             createTost(res.data.message, 'success')
             setErrBorder(false)
@@ -116,7 +116,7 @@ export const codeActivation = (code, token, setErrBorder, navigate) => async (di
                 type : ACTIVATION_FAILED,
                 payload: error.response.data.message
             })
-            console.log(error.response.data.message);
+            // console.log(error.response.data.message);
         })
         
     } catch (error) {
@@ -136,7 +136,6 @@ export const codeResend = ({token, userType} ) => async (dispatch) => {
 
         const bearer  = `Bearer `+ token ;
 
-        console.log(bearer);
         await axios.post('/api/v1/user/resend-code', { userType }, {
             headers: {
                 'Authorization': bearer
@@ -313,14 +312,12 @@ export const resetCodeMatch = (resetCode, resetToken, setErrBorder, navigate, se
             setErrorMsg({status:true, msg : error.response.data.message });
             setErrBorder(true);
             createTost(error.response.data.message);
-            console.log(error.response.data.message);
         })
   
     } catch (error) {
         setErrorMsg({status:true, msg : error.response.data.message });
         setErrBorder(true);
         createTost(error.response.data.message);
-        console.log(error.response.data.message);
     }
 }
 // handle set new password 
@@ -364,14 +361,12 @@ export const handleSetNewPass = (pass, reset_vfy, setErrorMsg, setErrBorder, nav
             setErrorMsg({status:true, msg : error.response.data.message });
             setErrBorder(true);
             createTost(error.response.data.message);
-            console.log(error.response.data.message);
         })
   
     } catch (error) {
         setErrorMsg({status:true, msg : error.response.data.message });
         setErrBorder(true);
         createTost(error.response.data.message);
-        console.log(error.response.data.message);
     }
 }
 
@@ -403,7 +398,6 @@ export const resetPassLinkVfy = (id, token, setMsg, navigate) => async(dispatch)
                 type: "error" 
             })
             createTost(error.response.data.message);
-            console.log(error.response.data.message);
         })
         
     } catch (error) {
@@ -413,7 +407,6 @@ export const resetPassLinkVfy = (id, token, setMsg, navigate) => async(dispatch)
             type: "error" 
         })
         createTost(error.response.data.message);
-        console.log(error.response.data.message);
     }
 }
 
@@ -474,7 +467,6 @@ export const handleLogin = (logIn, setErrBorder,  navigate, setErrmsg) => async 
             }
         
             createTost(error.response.data.message);
-            console.log(error.response.data);
         })
     } catch (error) {
         let errData = error.response.data;
@@ -487,7 +479,6 @@ export const handleLogin = (logIn, setErrBorder,  navigate, setErrmsg) => async 
         }
     
         createTost(error.response.data.message);
-        console.log(error.response.data.message);
     }
 
 
@@ -510,7 +501,6 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
         })
         .then(res => {
 
-            console.log(res.data);
         
         if(res.data.user.isActivate){
           dispatch({type : LOGIN_USER_SUCCESS, payload : res.data.user});
@@ -526,32 +516,28 @@ export const logedInUserData = (authToken, navigate) => async (dispatch) => {
         
         })
         .catch(error => {
-            console.log(error.response.data);
 
             dispatch({type : USER_LOGOUT})
             createTost(error.response.data.message)
             if(Cookies.get('authToken')){
                 Cookies.remove('authToken')
             }
-            console.log(error.response.data.message);
 
         }) 
 
     }catch(error){
-        console.log(error.response.data);
         
         dispatch({type : USER_LOGOUT})
         createTost(error.response.data.message)
         if(Cookies.get('authToken')){
             Cookies.remove('authToken')
         }
-        console.log(error.response.data.message);
     }
     
 }
 
 // get logedin user 
-export const updateUserData = (user ) => async (dispatch) => {
+export const updateUserData = (user , setAddForm) => async (dispatch) => {
 
     const authToken = Cookies.get('authToken')
 
@@ -561,7 +547,9 @@ export const updateUserData = (user ) => async (dispatch) => {
         .then(res => {
             dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
             createTost(res.data.message, "success")
-          console.log(res.data.message);
+            if(setAddForm){
+                setAddForm(false)
+            }
         })
         .catch(error => {
             // createTost(error.response.data.message, )
@@ -588,16 +576,12 @@ export const updateFeatured = (data, id, token, setState) => async (dispatch) =>
             dispatch({type: UPDATE_UAER_DATA, payload: res.data.user})
             setState()
             createTost(res.data.message, "success")
-            console.log(res.data.message);
-        console.log(res);
         })
         .catch(error => {
             createTost(error.response.data.message, )
-            console.log(error);
         });
     }catch(error){
         createTost(error.response.data.message)
-        console.log(error);
     }
     
 }

@@ -7,12 +7,14 @@ import { BsStar, BsThreeDots, BsTrash } from "react-icons/bs";
 import CardBox from "../../../../components/UtilityComponents/CardBox/CardBox";
 import { HiOutlinePencil } from "react-icons/hi";
 import "./WorKEdu.css";
-import EditForm from "./EditForm";
+import EditForm from "./WorkEditForm";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserData } from "../../../../redux/auth/authAction";
-// C:\aks\reaF\currentfile\044 FaceBook Project\fbapp\src\pages\Profile\ProAbout\Category\Category.css
+import { MdLock } from "react-icons/md";
+import { MdPeople } from "react-icons/md";
+import EduEditForm from "./EduEditForm";
 
-const DetailsItemShow = ({ data, type, deleindx }) => {
+const DetailsItemShow = ({ data, type, indexNo, title, workAs, studyIn }) => {
   const popref = useRef(null);
   const dispatch = useDispatch();
   const [popup, setPopup] = useState(false);
@@ -26,33 +28,60 @@ const DetailsItemShow = ({ data, type, deleindx }) => {
   };
 
   // delete item
-  const handleWorkDelete = e => {
-    user.work.splice(deleindx, 1);
-    dispatch(updateUserData({ ...user, work: user.work }));
+  const handleDelete = e => {
+    user[type].splice(indexNo, 1);
+    dispatch(updateUserData({ ...user, [type]: user[type] }));
   };
-
-  // will update
 
   return (
     <>
       {!editForm && (
         <>
-          <div className="DetailsItemShow">
+          <div className="DetailsItemShow" style={{ marginBottom: "10px", marginTop: "10px" }}>
             <div className="itemLeft">
               <span className="iconBox">
-                <img src={`/ItemShowIcon/${type ? type : "study"}.png`} alt="" />
+                <img src={`/ItemShowIcon/${type}.png`} alt="" />
               </span>
 
               <span style={{ display: "block" }} className="textBox">
-                <h4>{data?.title}</h4>
-                <h5 style={{ display: "block" }}>{data?.duration}</h5>
-                <h6>{data?.sub} </h6>
+                <div className="" style={{ display: "flex" }}>
+                  {workAs && (
+                    <>
+                      <h4>Work at {title}</h4> &nbsp;
+                      {workAs && <h5> as {workAs}</h5>}
+                    </>
+                  )}
+                  {studyIn && (
+                    <>
+                      <h4>{title}</h4> &nbsp;
+                      {data.isGraduated && <h5> - Graduate</h5>}
+                      {data && <h5>-{studyIn}</h5>}
+                    </>
+                  )}
+                </div>
+                <div className="durationDetiles">
+                  {data?.monthFrom && <span className="month">{data?.monthFrom}&nbsp;</span>}
+                  {data?.yearFrom && <span className="year">{data?.yearFrom}&nbsp;</span>}
+                  {data?.dayFrom && <span className="day">{data?.dayFrom}&nbsp;</span>}
+                  {!data?.isCouently && (
+                    <>
+                      to &nbsp;
+                      {data?.monthTo && <span className="month">{data?.monthTo}&nbsp;</span>}
+                      {data?.yearTo && <span className="year">{data?.yearTo}&nbsp;</span>}
+                      {data?.dayTo && <span className="day">{data?.dayTo}&nbsp;</span>}
+                    </>
+                  )}
+                  {data.isCouently && <span>Present</span>}
+                </div>
+                {data?.desc && <span>{data.desc}</span>}
               </span>
             </div>
             <div className="itemRight">
               <span className="viewIcon">
                 <button className="roundBtn">
-                  <MdPublic />
+                  {data?.status === "public" && <MdPublic />}
+                  {data?.status === "friend" && <MdPeople />}
+                  {data?.status === "onlyMe" && <MdLock />}
                 </button>
               </span>
               <span ref={popref} className="buttonBox">
@@ -62,7 +91,7 @@ const DetailsItemShow = ({ data, type, deleindx }) => {
 
                 {popup && (
                   <>
-                    <div className="popupBox">
+                    <div className="popupBox" style={{ zIndex: 2 }}>
                       <CardBox pad={"8px"} widt={"290px"}>
                         <>
                           <button>
@@ -80,7 +109,7 @@ const DetailsItemShow = ({ data, type, deleindx }) => {
 
                         <>
                           <div>
-                            <button onClick={handleWorkDelete}>
+                            <button onClick={handleDelete}>
                               <BsTrash />
                               <span>Delete </span>
                             </button>
@@ -96,9 +125,14 @@ const DetailsItemShow = ({ data, type, deleindx }) => {
         </>
       )}
 
-      {editForm && (
+      {editForm && type === "work" && (
         <>
-          <EditForm editForm={editForm} setEditForm={setEditForm} />
+          <EditForm editIndex={indexNo} setEditForm={setEditForm} data={data} />
+        </>
+      )}
+      {editForm && type === "education" && (
+        <>
+          <EduEditForm editIndex={indexNo} setEditForm={setEditForm} data={data} />
         </>
       )}
     </>

@@ -1,12 +1,18 @@
 /** @format */
-
+.durationSec {
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+}
 .coruntlyWorked {
+  cursor: pointer;
   display: flex;
-  gap: 8px;
+  /* gap: 8px; */
+  margin-bottom: 5px;
 }
 .coruntlyWorked label {
   /* height: 30px;
   width: 30px; */
+  padding-left: 8px;
 }
 .coruntlyWorked input {
   height: 20px;
@@ -33,9 +39,15 @@
 .durationInput .inputes select {
   font-size: 16px;
   padding: 10px;
-  background: #d5d6d7;
+  background: #e7eaed;
   border: none;
   border-radius: 5px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.durationInput .inputes select:hover {
+  background: #d5d6d7;
 }
 .durationInput .inputes select option {
   font-size: 16px;

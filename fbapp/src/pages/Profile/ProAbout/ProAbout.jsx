@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProAbout.css";
 import { Link, Outlet, useLocation, useOutlet } from "react-router-dom";
 import ProOutletWrap from "../ProoutletWrap";
@@ -12,14 +12,19 @@ import AboutYou from "./AboutYou/AboutYou";
 import ContactInfo from "./ContactInfo/ContactInfo";
 import WordEdu from "./WorkEdu/WorkEdu";
 import { useSelector } from "react-redux";
-import Category from "./Category/Category";
+import { navLinks } from "./aboutLinks";
 
 const ProAbout = () => {
-  // const out = use();
-  // console.log(out);
-
   // use Selector
   const { pathName } = useSelector(state => state.auth);
+  const { pathname } = useLocation();
+
+  const [active, setActive] = useState("");
+
+  let location = pathName.split("/");
+  location.splice(0, 2);
+  const test = "/" + location.join("/");
+  console.log(test);
 
   const handleActiv = e => {
     if (e.target.pathname === pathName) {
@@ -30,27 +35,30 @@ const ProAbout = () => {
     // console.log(e.target.pathname);
   };
 
+  // const handleActive = () => {};
+  // useEffect(() => {
+  //   let data = pathName.split("/");
+  //   data.splice(0, 2);
+  //   console.log(data.join("/"));
+  //   setActive(data.join("/"));
+  //   console.log(active);
+  // }, [pathname]);
+
   return (
     <>
       <ProOutletWrap>
         <CardBoxWH cPading={"0"}>
           <div style={{}} className="aboutSec">
             <div className="about aboutsecLeft">
-              <Link className={"title"} to={"/profile/about"}>
+              <Link className="title" to={"/profile/about"}>
                 About
               </Link>
-              <Link className={`${"active"}`} to={"/profile/about"}>
-                Overview
-              </Link>
-
-              <Link onClick={handleActiv} to={"/profile/about/work-and-edu"}>
-                Work and education
-              </Link>
-              <Link to={"/profile/about/contact-info"}>Contact and basic info</Link>
-              <Link to={"/profile/about/places-lived"}>Places lived</Link>
-              <Link to={"/profile/about/relationship"}>Family and ralationships</Link>
-              <Link to={"/profile/about/about-you"}>Details about you</Link>
-              <Link to={"/profile/about/life-event"}>Life events</Link>
+              {/*  */}
+              {navLinks.map((data, i) => (
+                <Link className={`${test === data.id ? "active" : ""}`} key={i} to={"/profile" + data.id}>
+                  {data.title}
+                </Link>
+              ))}
             </div>
 
             <div className="about aboutsecRight">

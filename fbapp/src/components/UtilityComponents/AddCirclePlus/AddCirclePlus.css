@@ -1,15 +1,20 @@
 /** @format */
-
+button.AddCirclePlus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
 .AddCirclePlus {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
 }
 .AddCirclePlus span {
   display: inline-block;
   font-size: 17px;
   color: #1877f2;
-  margin-top: -10px;
+  /* margin-top: -10px; */
 }
 
 .AddCirclePlus span svg {

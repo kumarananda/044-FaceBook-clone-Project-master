@@ -26,14 +26,14 @@ export const AddCirclePlus = ({ title, link, action }) => {
 export const AddCirclePlusWlink = ({ title, link, action }) => {
   return (
     <>
-      <li className="AddCirclePlus">
-        <div onClick={action}>
+      <button className="AddCirclePlus" onClick={action}>
+        <div>
           <span style={{}}>
             <BsPlusCircle />
           </span>
           <span style={{ marginLeft: "10px" }}>{title}</span>
         </div>
-      </li>
+      </button>
     </>
   );
 };

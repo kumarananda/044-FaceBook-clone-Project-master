@@ -1,12 +1,13 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { aIn, iAcIn, textAria } from "./style";
+import "./LabeIInput.css";
 
-const LableInput = ({ placeholder, type = "text", inputChange = null, value = "", name }) => {
+const LabeIInput = ({ placeholder, type = "text", inputChange = null, value = "", name }) => {
   const [active, setActive] = useState(false);
   const fildStatus = active ? aIn : iAcIn;
-  const textAriaStatus = active ? {} : { fontSize: "8px" };
+  const textAriaStatus = active ? { fontSize: "18px" } : { fontSize: "8px" };
   const contHight = type === "textarea" ? { height: "80PX" } : { height: "58px" };
 
   const handleActiveFild = e => {
@@ -19,6 +20,13 @@ const LableInput = ({ placeholder, type = "text", inputChange = null, value = ""
       setActive(false);
     }
   };
+
+  useEffect(() => {
+    if (value) {
+      setActive(true);
+    }
+  }, [value]);
+
   return (
     <>
       <div style={fildStatus.wrap}>
@@ -37,7 +45,14 @@ const LableInput = ({ placeholder, type = "text", inputChange = null, value = ""
               />
             )}
             {type === "textarea" && (
-              <textarea onClick={handleActiveFild} onBlur={handleBlurInactiv} style={{ ...textAria, ...textAriaStatus }} value={value} name="desc" />
+              <textarea
+                onClick={handleActiveFild}
+                onBlur={handleBlurInactiv}
+                onChange={inputChange}
+                style={{ ...textAria, ...textAriaStatus }}
+                value={value}
+                name="desc"
+              />
             )}
           </label>
         </div>
@@ -46,4 +61,4 @@ const LableInput = ({ placeholder, type = "text", inputChange = null, value = ""
   );
 };
 
-export default LableInput;
+export default LabeIInput;

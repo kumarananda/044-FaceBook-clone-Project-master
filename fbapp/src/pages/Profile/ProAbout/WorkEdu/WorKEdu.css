@@ -94,5 +94,8 @@
 .DetailsItemShow .itemRight .buttonBox .popupBox button span {
   margin-left: 10px;
 }
-.DetailsItemShow .itemRight .viewIcon {
+.DetailsItemShow .durationDetiles {
+  font-size: 11px;
+  font-weight: bold;
+  color: #403636b0;
 }

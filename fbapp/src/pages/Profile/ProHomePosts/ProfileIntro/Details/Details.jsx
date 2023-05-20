@@ -28,32 +28,33 @@ const Details = () => {
   const handleUpdate = () => {
     alert("jkkk");
   };
+  console.log(user?.education);
 
   return (
     <>
       <ul>
-        <li>
-          <div className="introItems">
-            <img src={jobIcon} alt="" />
-            <span>Former MSS at Student </span>
-          </div>
-        </li>
-        <li>
-          <div className="introItems">
-            <img src={eduIcon} alt="" />
-            <span>
-              Studied at <span className="boldText">Govt Lohagara Ideal College</span>
-            </span>
-          </div>
-        </li>
-        <li>
-          <div className="introItems">
-            <img src={eduIcon} alt="" />
-            <span>
-              Studied at <span className="boldText">Tejgaon College</span>
-            </span>
-          </div>
-        </li>
+        {user?.work &&
+          user.work.length > 0 &&
+          user.work.map((data, i) => (
+            <li key={i}>
+              <div className="introItems">
+                <img src={jobIcon} alt="" />
+                {data?.post && <span>Former {data.post}</span>} <span className="boldText">{data.company}</span>
+              </div>
+            </li>
+          ))}
+        {user?.education &&
+          user.education.length > 0 &&
+          user.education.map((data, i) => (
+            <li key={i}>
+              <div className="introItems">
+                <img src={eduIcon} alt="" />
+                <span>Studied at </span>
+                <span className="boldText">{data.eduInstitute}</span>
+              </div>
+            </li>
+          ))}
+
         <li>
           <div className="introItems">
             <img src={homeIcom} alt="" />

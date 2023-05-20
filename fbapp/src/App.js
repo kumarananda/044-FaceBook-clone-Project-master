@@ -37,7 +37,6 @@ import Relationship from './pages/Profile/ProAbout/Relationship/Relationship';
 import AboutYou from './pages/Profile/ProAbout/AboutYou/AboutYou';
 import Overview from './pages/Profile/ProAbout/Overview/Overview';
 import { SETPATHNAME } from './redux/auth/actionType';
-import Category from './pages/Profile/ProAbout/Category/Category';
 // import useAgeCal from './hooks/useTest';
 // import useDataget from './hooks/useDataGet';
 
@@ -54,7 +53,7 @@ function App() {
 
   // get login token
   const authToken = Cookies.get('authToken');
-  // console.log(authToken);
+
 
   // use dispatch 
   const dispatch = useDispatch()
@@ -66,30 +65,15 @@ function App() {
 
 
   useEffect(() => {
-
     if(authToken){
       dispatch(logedInUserData(authToken, navigate))
       dispatch({type: SETPATHNAME, payload : pathname})
     }
-
-  },[dispatch, authToken, navigate])
+  },[dispatch, authToken, navigate,pathname])
 
   useEffect(() => {
     dispatch({type: SETPATHNAME, payload : pathname})
-  },[pathname])
-
-
-// hooks
-// const [ageCal, setAgeCal] = useAgeCal(1992,)
-// setAgeCal(50)
-// console.log(ageCal);
-
-// const [getdata] = useDataget('https://jsonplaceholder.typicode.com/todos')
-// console.log(getdata);
-
-
-
-
+  },[pathname,dispatch])
   
   return (
     <>

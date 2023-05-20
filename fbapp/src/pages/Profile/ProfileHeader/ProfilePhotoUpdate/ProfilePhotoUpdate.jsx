@@ -58,13 +58,11 @@ const ProfilePhotoUpdate = ({ modalOpen, setModalOpen }) => {
     } catch (e) {
       console.error(e);
     }
-  }, [croppedAreaPixels, rotation]);
+  }, [croppedAreaPixels, rotation, croped, photo]);
 
   // zoom range
   const handleRangeValue = e => {
     setZoom(e.target.value);
-    console.log(e.target.value);
-    console.log(zoom);
     setCroped(false);
   };
 
@@ -112,7 +110,6 @@ const ProfilePhotoUpdate = ({ modalOpen, setModalOpen }) => {
   };
 
   const handleCropImgeSelect = e => {
-    console.log(e.target.files[0]);
     const img = URL.createObjectURL(e.target.files[0]);
     setPhoto(img);
     setInitialPhoto(img);

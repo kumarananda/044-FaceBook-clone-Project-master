@@ -5,7 +5,7 @@ const useMouseDown =(ref, dropdown, setDropdown) => {
 
         // // type 01
         let handler = e => {
-            if (!ref.current.contains(e.target)) {
+            if (!ref.current?.contains(e.target)) {
               setDropdown(false);
             //   console.log(ref.current.contains(e.target));
             }

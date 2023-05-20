@@ -35,10 +35,8 @@ const CarouselNew = ({ children, arraylan, item_width, item_height, show_items, 
 
   let nextDiffAcc = trns + steps === labelFlor * steps;
 
-  console.log(trns);
-
   // console.log(nextDiffAcc);
-  console.log(diffr);
+  // console.log(diffr);
 
   // controls events
   const goNext = () => {

@@ -53,8 +53,6 @@ const Register = () => {
   const [toolTip, setToolTip] = useState({});
   const [fildEdit, setFildEdit] = useState({});
 
-  console.log(fildEdit);
-  console.log(toolTip);
 
   const tollBlurHandle = e => {
     setFildEdit(prev => ({ ...prev, [e.target.name]: true }));

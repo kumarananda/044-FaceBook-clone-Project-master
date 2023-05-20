@@ -7,7 +7,7 @@ import UserAvater from "../../../components/UtilityComponents/UserAvater";
 import UserName from "../../../components/UtilityComponents/UserName";
 import ProfilePhotoUpdate from "./ProfilePhotoUpdate/ProfilePhotoUpdate";
 import BtnCamaraIcon from "../../../components/UtilityComponents/BtnCamaraIcon/BtnCamaraIcon";
-import CoverPhotoUdate from "./CoverPhotoUdate/CoverPhotoUdate";
+import CoverPhoto from "./CoverPhoto/CoverPhoto";
 
 const ProfileHeader = () => {
   const [ppModal, setPpModal] = useState(false);
@@ -17,7 +17,7 @@ const ProfileHeader = () => {
       <div className="fb-profile-body">
         <div className="fb-profile-header">
           {/* <!-- Cover Photo  --> */}
-          <CoverPhotoUdate />
+          <CoverPhoto />
 
           <ProfilePhotoUpdate modalOpen={ppModal} setModalOpen={setPpModal} />
           <div className="fb-profile-details">
